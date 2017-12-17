@@ -1,15 +1,16 @@
+# Copyright (C) 2017 WP cdnjs reborn
 # Copyright (C) 2014 WP cdnjs
 # This file is distributed under the same license as the WP cdnjs package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP cdnjs 0.1\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/tag/wp-cdnjs\n"
-"POT-Creation-Date: 2014-08-08 22:08:04+00:00\n"
+"Project-Id-Version: WP cdnjs reborn 0.2.0\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/wp-cdnjs-reborn\n"
+"POT-Creation-Date: 2017-12-17 20:32:04+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2014-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Eric Derewonko <dev@derewonko.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
 #: lib/settings-framework/settings-framework.php:56
@@ -132,23 +133,23 @@ msgid "Search cdnjs Libraries"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
-msgid "WP cdnjs"
+msgid "WP cdnjs reborn"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
-msgid "http://wordpress.org/plugins/wp-cdnjs/"
+msgid "http://wordpress.org/plugins/wp-cdnjs-reborn/"
 msgstr ""
 
 #. Description of the plugin/theme
 msgid ""
-"Effortlessly include any CSS or JavaScript Library hosted at cdnjs.com on "
+"Integrate easily any CSS or JavaScript Library hosted by cdnjs.com on "
 "your WordPress site."
 msgstr ""
 
 #. Author of the plugin/theme
-msgid "Mindshare Labs / ANAGR.AM"
+msgid "LesMoules Inc"
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "https://mindsharelabs.com/"
+msgid "https://github.com/audioscavenger/wp-cdnjs-reborn"
 msgstr ""

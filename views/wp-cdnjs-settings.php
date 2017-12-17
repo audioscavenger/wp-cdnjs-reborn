@@ -7,25 +7,33 @@ function wp_cdnjs_settings($settings) {
 
 	// General Settings section
 	$settings[] = array(
-		'section_id' => 'settings',
-		'section_title' => __('Settings', 'wp-cdnjs'),
+		'section_id'          => 'settings',
+		'section_title'       => __('Settings', 'wp-cdnjs'),
 		'section_description' => '',
 		//'section_order'       => 5,
-		'fields' => array(
+		'fields'              => array(
 			array(
-				'id' => 'enable_scripts',
-				'title' => __('Enable scripts', 'wp-cdnjs'),
-				'desc' => __('Enqueue scripts for output on your site', 'wp-cdnjs'),
+				'id'          => 'enable_scripts',
+				'title'       => __('Enable', 'wp-cdnjs'),
+				'desc'        => __('Enqueue scripts in Locations defined', 'wp-cdnjs'),
 				'placeholder' => '',
-				'type' => 'checkbox',
-				'std' => 0
+				'type'        => 'checkbox',
+				'std'         => 0
 			),
 			array(
-				'id' => 'scripts',
-				'title' => __('Find cdnjs Libraries', 'wp-cdnjs'),
-				'desc' => __('Search for CSS and JavaScript libraries to include.', 'wp-cdnjs'),
-				'std' => '',
-				'type' => 'cdnjs',
+				'id'          => 'avoid_minified',
+				'title'       => __('Avoid minified', 'wp-cdnjs'),
+				'desc'        => __('Avoid the minified version (selected by default)', 'wp-cdnjs'),
+				'placeholder' => '',
+				'type'        => 'checkbox',
+				'std'         => 0
+			),
+			array(
+				'id'    => 'scripts',
+				'title' => __('Browse cdnjs Libraries', 'wp-cdnjs'),
+				'desc'  => __('Search for CSS and JavaScript libraries to include.', 'wp-cdnjs'),
+				'std'   => '',
+				'type'  => 'cdnjs',
 			),
 
 		)
@@ -38,6 +46,7 @@ add_action('wp_cdnjs_after_field_cdnjs_settings_scripts', 'cdn_field');
 function cdn_field() {
 	global $wp_cdnjs;
 	$settings = $wp_cdnjs->get_settings(WP_CDNJS_OPTIONS);
+  // wtf($settings);
 
 	?>
 
@@ -49,6 +58,7 @@ function cdn_field() {
 		<tr>
 			<th scope="col" class="wp-cdnjs_move check-column"></th>
 			<th scope="col" class="wp-cdnjs_name"><?php _e('Plugin Name', 'wp-cdnjs') ?></th>
+			<th scope="col" class="wp-cdnjs_choose_version"><?php _e('Version', 'wp-cdnjs') ?></th>
 			<th scope="col" class="wp-cdnjs_assets"><?php _e('Assets', 'wp-cdnjs') ?></th>
 			<th scope="col" class="wp-cdnjs_add_assets"><?php _e('Add Assests', 'wp-cdnjs') ?></th>
 			<th scope="col" class="wp-cdnjs_location"><?php _e('Location', 'wp-cdnjs') ?></th>
@@ -61,16 +71,19 @@ function cdn_field() {
 		if(!empty($settings['cdnjs_settings_scripts'])) : foreach($settings['cdnjs_settings_scripts'] as $key => $value) : ?>
 			<tr id="<?php echo $key; ?>-row" class="index">
 				<td class="wp-cdnjs_move"><i class="fa fa-arrows-v"></i></td>
-				<td class="wp-cdnjs_name"><strong><?php echo $value['name']; ?></strong> <br /><?php _e('Version', 'wp-cdnjs') ?>: <?php echo $value['version']; ?>
+				<td class="wp-cdnjs_name"><strong><?php echo $value['name']; ?></strong> <br /><?php _e('Version', 'wp-cdnjs') ?>: <span class="currentVersion"><?php echo $value['version']; ?></span>
 					<input type="hidden" name="cdnjs[cdnjs_settings_scripts][<?php echo $key; ?>][name]" class="plugin_name" value="<?php echo $value['name']; ?>" />
 					<input type="hidden" name="cdnjs[cdnjs_settings_scripts][<?php echo $key; ?>][version]" class="plugin_version" value="<?php echo $value['version']; ?>" />
 				</td>
+				<td class="wp-cdnjs_choose_version">
+					<input type="hidden" id="<?php echo $key; ?>-choose_version" data-plugin-name="<?php echo $value['name']; ?>" data-asset-id="<?php echo sanitize_title($setasset); ?>" data-version="<?php echo $value['version']; ?>" class="select2-version">
+				</td>
 				<td class="wp-cdnjs_assets">
 					<?php $setasset = array_shift($value['assets']); ?>
-					<div id="<?php echo sanitize_title($setasset) ?>-asset-holder" class="inluded_assets">
+					<div id="<?php echo sanitize_title($setasset) ?>-asset-holder" class="included_assets">
 						<div><strong><?php _e('Included Assets', 'wp-cdnjs') ?>:</strong></div>
 						<div id="<?php echo sanitize_title($setasset) ?>-asset-row">
-							<?php echo $setasset . ' *'; ?>
+							<?php echo $setasset.' *'; ?>
 							<input type="hidden" name="cdnjs[cdnjs_settings_scripts][<?php echo $key; ?>][assets][]" value="<?php echo $setasset; ?>">
 						</div>
 						<?php foreach($value['assets'] as $asset) : ?>
@@ -82,8 +95,8 @@ function cdn_field() {
 						<?php endforeach; ?>
 					</div>
 				</td>
-				<td class="wp-cdnjs_version">
-					<input type="hidden" id="<?php echo $key; ?>" data-plugin-name="<?php echo $value['name']; ?>" data-asset-id="<?php echo sanitize_title($setasset); ?>" data-asset-file="<?php echo $setasset; ?>" class="select2-assets">
+				<td class="wp-cdnjs_add_assets">
+					<input type="hidden" id="<?php echo $key; ?>-add_assets" data-plugin-name="<?php echo $value['name']; ?>" data-asset-id="<?php echo sanitize_title($setasset); ?>" data-asset-file="<?php echo $setasset; ?>" class="select2-assets">
 				</td>
 				<td class="wp-cdnjs_location">
 					<select name="cdnjs[cdnjs_settings_scripts][<?php echo $key; ?>][location]">

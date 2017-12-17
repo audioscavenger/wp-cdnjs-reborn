@@ -1,21 +1,19 @@
 <?php
-/*
-Plugin Name: WP cdnjs
-Plugin URI: http://wordpress.org/plugins/wp-cdnjs/
-Description: Effortlessly include any CSS or JavaScript Library hosted at cdnjs.com on your WordPress site.
-Version: 0.1.4
-Author: Mindshare Labs / ANAGR.AM
-Author URI: https://mindsharelabs.com/
-License: GNU General Public License
-License URI: license.txt
-Text Domain: wp-cdnjs
-Domain Path: /lang
-*/
+/**
+ * Plugin Name: WP cdnjs reborn
+ * Plugin URI: http://wordpress.org/plugins/wp-cdnjs-reborn/
+ * Description: Wordpress plugin used to integrate easily CSS and JavaScript Library hosted by http://cdnjs.com on your WordPress site.
+ * Version: 0.2.0
+ * Maintainer: audioscavenger
+ * Maintainer URI: https://github.com/audioscavenger/wp-cdnjs-reborn
+ * License: GNU General Public License v3
+ * License URI: license.txt
+ * Text Domain: wp-cdnjs
+ */
 
 /**
- *
- * Copyright 2014  Mindshare Studios, Inc. (http://mind.sh/are/)
- *
+ * Copyright 2017 Eric Derewonko (http://www.derewonko.com)
+ * Plugin template was forked from the WP cdnjs by Mindshare Studios, Inc. (http://mind.sh/are/)
  * Plugin template was forked from the WP Settings Framework by Gilbert Pellegrom http://dev7studios.com
  * and the WordPress Plugin Boilerplate by Christopher Lamm http://www.theantichris.com
  *
@@ -42,7 +40,7 @@ if(!function_exists('add_action')) {
 }
 
 if(!defined('WP_CDNJS_VERSION')) {
-	define('WP_CDNJS_VERSION', '0.1.4');
+	define('WP_CDNJS_VERSION', '0.2.0');
 }
 
 if(!defined('WP_CDNJS_MIN_WP_VERSION')) {
@@ -50,7 +48,7 @@ if(!defined('WP_CDNJS_MIN_WP_VERSION')) {
 }
 
 if(!defined('WP_CDNJS_PLUGIN_NAME')) {
-	define('WP_CDNJS_PLUGIN_NAME', 'WP cdnjs');
+	define('WP_CDNJS_PLUGIN_NAME', 'WP cdnjs reborn');
 }
 
 if(!defined('WP_CDNJS_PLUGIN_SLUG')) {
@@ -535,14 +533,16 @@ if(!class_exists('WP_CDNJS')) : /**
 
 			wp_register_script('wp-cdnjs', WP_CDNJS_DIR_URL . '/assets/js/wp-cdnjs.js');
 			$translation_array = array(
-				'add_assets' => __('Add Assets', 'wp-cdnjs'),
-				'footer' => __('Footer', 'wp-cdnjs'),
-				'header' => __('Header', 'wp-cdnjs'),
-				'inc_assets' => __('Included Assets', 'wp-cdnjs'),
-				'no_addl_assets' => __('Included Assets', 'wp-cdnjs'),
-				'remove' => __('Remove', 'wp-cdnjs'),
+				'add_assets'         => __('Add Assets', 'wp-cdnjs'),
+				'choose_version'     => __('Choose Version', 'wp-cdnjs'),
+				'footer'             => __('Footer', 'wp-cdnjs'),
+				'header'             => __('Header', 'wp-cdnjs'),
+				'inc_assets'         => __('Included Assets', 'wp-cdnjs'),
+				'no_addl_assets'     => __('No Additional Assets', 'wp-cdnjs'),
+				'no_addl_version'    => __('No Additional Version', 'wp-cdnjs'),
+				'remove'             => __('Remove', 'wp-cdnjs'),
 				'search_placeholder' => __('Search cdnjs Libraries', 'wp-cdnjs'),
-				'version' => __('Version', 'wp-cdnjs')
+				'version'            => __('Version', 'wp-cdnjs')
 			);
 			wp_localize_script('wp-cdnjs', 'cdnjs_text', $translation_array);
 			wp_enqueue_script('wp-cdnjs');
