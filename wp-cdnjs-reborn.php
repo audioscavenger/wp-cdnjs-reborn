@@ -49,7 +49,7 @@ if(!defined('WP_CDNJS_MIN_WP_VERSION')) {
 }
 
 if(!defined('WP_CDNJS_PLUGIN_NAME')) {
-	define('WP_CDNJS_PLUGIN_NAME', 'WP cdnjs reborn');
+	define('WP_CDNJS_PLUGIN_NAME', 'WP CDNjs Reborn');
 }
 
 if(!defined('WP_CDNJS_PLUGIN_SLUG')) {
