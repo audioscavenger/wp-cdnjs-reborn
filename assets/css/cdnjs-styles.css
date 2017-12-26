@@ -2,6 +2,8 @@ body.dragging, body.dragging * {
   cursor: move !important;
 }
 
+.menu_cdnjs {margin-right: 4px; display: inline; vertical-align: middle; margin-top: -1px;}  
+
 .dragged {
   position: absolute;
   opacity: 0.5;
