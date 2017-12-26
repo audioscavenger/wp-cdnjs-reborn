@@ -53,7 +53,7 @@ if(!class_exists('wp_cdnjs_settings')) {
 		public function __construct($settings_file, $option_group = '') {
 			global $wp_cdnjs;
 			if(!is_file($settings_file)) {
-				exit(__('Settings file could not be found.', 'wp-cdnjs'));
+				exit(__('Settings file could not be found.', 'wp-cdnjs-reborn'));
 			}
 			require_once($settings_file);
 
@@ -67,7 +67,7 @@ if(!class_exists('wp_cdnjs_settings')) {
 			$this->settings = array();
 			$this->settings = apply_filters('wp_cdnjs_register_settings', $this->settings);
 			if(!is_array($this->settings)) {
-				exit(__('Settings framework must be an array', 'wp-cdnjs'));
+				exit(__('Settings framework must be an array', 'wp-cdnjs-reborn'));
 			}
 
 			add_action('admin_init', array($this, 'admin_init'));
@@ -329,7 +329,7 @@ if(!class_exists('wp_cdnjs_settings')) {
 				delete_option($this->option_group);
 				?>
 				<div class="updated">
-					<p><?php _e('All options have been removed from the database.', 'wp-cdnjs'); ?>
+					<p><?php _e('All options have been removed from the database.', 'wp-cdnjs-reborn'); ?>
 
 						<?php
 						if(defined('WP_CDNJS_PLUGIN_SLUG') && WP_CDNJS_PLUGIN_SLUG != '') {
@@ -340,7 +340,7 @@ if(!class_exists('wp_cdnjs_settings')) {
 						}
 						?>
 
-						<?php printf(__('To complete the uninstall <a href="%1$s"">deactivate %2$s.</a>', 'wp-cdnjs'), esc_url($deactivate_url), WP_CDNJS_PLUGIN_NAME); ?>
+						<?php printf(__('To complete the uninstall <a href="%1$s"">deactivate %2$s.</a>', 'wp-cdnjs-reborn'), esc_url($deactivate_url), WP_CDNJS_PLUGIN_NAME); ?>
 					</p>
 				</div>
 				<?php
@@ -352,7 +352,7 @@ if(!class_exists('wp_cdnjs_settings')) {
 				delete_option($this->option_group);
 				?>
 				<div class="updated">
-					<p><?php _e('All options have been restored to their default values.', 'wp-cdnjs'); ?></p>
+					<p><?php _e('All options have been restored to their default values.', 'wp-cdnjs-reborn'); ?></p>
 				</div>
 			<?php
 			}
@@ -366,14 +366,14 @@ if(!class_exists('wp_cdnjs_settings')) {
 				<?php do_action('wp_cdnjs_after_settings_fields'); ?>
 
 				<p class="submit">
-					<input type="submit" class="button-primary" value="<?php _e('Save Changes', 'wp-cdnjs'); ?>" />
+					<input type="submit" class="button-primary" value="<?php _e('Save Changes', 'wp-cdnjs-reborn'); ?>" />
 
 					<?php if($this->show_reset_button == TRUE) : ?>
-						<input class="button-secondary" type="button" value="<?php _e('Restore Defaults', 'wp-cdnjs'); ?>" onclick="document.getElementById('wp-cdnjs-reset').style.display = 'block';document.getElementById('wp-cdnjs-uninst').style.display = 'none';" />
+						<input class="button-secondary" type="button" value="<?php _e('Restore Defaults', 'wp-cdnjs-reborn'); ?>" onclick="document.getElementById('wp-cdnjs-reset').style.display = 'block';document.getElementById('wp-cdnjs-uninst').style.display = 'none';" />
 					<?php endif; ?>
 
 					<?php if($this->show_uninstall_button == TRUE) : ?>
-						<input class="button-secondary" type="button" value="<?php _e('Uninstall', 'wp-cdnjs'); ?>" onclick="document.getElementById('wp-cdnjs-uninst').style.display = 'block';document.getElementById('wp-cdnjs-reset').style.display = 'none';" />
+						<input class="button-secondary" type="button" value="<?php _e('Uninstall', 'wp-cdnjs-reborn'); ?>" onclick="document.getElementById('wp-cdnjs-uninst').style.display = 'block';document.getElementById('wp-cdnjs-reset').style.display = 'none';" />
 					<?php endif; ?>
 				</p>
 			</form>
@@ -382,8 +382,8 @@ if(!class_exists('wp_cdnjs_settings')) {
 				<form method="post" action="">
 					<?php wp_nonce_field('wp-cdnjs-reset', 'wp-cdnjs-reset-nonce'); ?>
 					<label style="font-weight:normal;">
-						<?php printf(__('Do you wish to <strong>completely reset</strong> the default options for', 'wp-cdnjs')); ?> <?php echo WP_CDNJS_PLUGIN_NAME ?>? </label>
-					<input class="button-secondary" type="button" name="cancel" value="<?php _e('Cancel', 'wp-cdnjs'); ?>" onclick="document.getElementById('wp-cdnjs-reset').style.display='none';" style="margin-left:20px" />
+						<?php printf(__('Do you wish to <strong>completely reset</strong> the default options for', 'wp-cdnjs-reborn')); ?> <?php echo WP_CDNJS_PLUGIN_NAME ?>? </label>
+					<input class="button-secondary" type="button" name="cancel" value="<?php _e('Cancel', 'wp-cdnjs-reborn'); ?>" onclick="document.getElementById('wp-cdnjs-reset').style.display='none';" style="margin-left:20px" />
 					<input class="button-primary" type="submit" name="wp_cdnjs_reset" value="Restore Defaults" />
 				</form>
 			</div>
@@ -391,8 +391,8 @@ if(!class_exists('wp_cdnjs_settings')) {
 				<form method="post" action="">
 					<?php wp_nonce_field('wp-cdnjs-uninstall', 'wp-cdnjs-uninstall-nonce'); ?>
 					<label style="font-weight:normal;">
-						<?php echo sprintf(__('Do you wish to <strong>completely uninstall</strong>', 'wp-cdnjs')); ?> <?php echo WP_CDNJS_PLUGIN_NAME ?>?</label>
-					<input class="button-secondary" type="button" name="cancel" value="<?php _e('Cancel', 'wp-cdnjs'); ?>" onclick="document.getElementById('wp-cdnjs-uninst').style.display = 'none';" style="margin-left:20px" />
+						<?php echo sprintf(__('Do you wish to <strong>completely uninstall</strong>', 'wp-cdnjs-reborn')); ?> <?php echo WP_CDNJS_PLUGIN_NAME ?>?</label>
+					<input class="button-secondary" type="button" name="cancel" value="<?php _e('Cancel', 'wp-cdnjs-reborn'); ?>" onclick="document.getElementById('wp-cdnjs-uninst').style.display = 'none';" style="margin-left:20px" />
 					<input class="button-primary" type="submit" name="wp_cdnjs_uninstall" value="Uninstall" />
 				</form>
 			</div>
