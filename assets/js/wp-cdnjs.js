@@ -135,26 +135,27 @@ function onAssetChange() {
         results:  function(data, page) {
           var results = [];
           var used_assets = [];
-
+          assetId = cleanName(data.results[0].name);
+          selectedVersion = jQuery('#' + assetId + '-row .wp-cdnjs_name input.plugin_version').val(); //1.13.0
           theMainAsset = objID.data("asset-id");
-          if (debug) console.log('onAssetChange-theMainAsset: '+theMainAsset);
-          //console.log(theMainAsset);
-          /*var used_assets = jQuery('#' + theMainAsset + '-asset-holder input').map(function() {
-            return jQuery(this).val();
-          }).get();*/
-          jQuery('#' + theMainAsset + '-asset-holder input').each(function() {
+          if (debug) console.log('onAssetChange-theMainAsset: '+theMainAsset);  //popper-min-js
+          if (debug) console.log('onAssetChange-assetId for '+theMainAsset+': '+assetId); //popper-min-js: popper-js
+          if (debug) console.log('onAssetChange-selectedVersion for '+theMainAsset+': '+selectedVersion); //popper-min-js: 1.13.0
+
+          //@todo: change '#' + theMainAsset + '-asset-holder to '#' + assetId + '-asset-holder
+          //@done: we don't want the holder of the rows to be named after the main asset if we want this main asset to be changed later
+          //example: popper.min.js is incompatible with bootstrap so we need to use umd/popper.min.js instead
+          // https://stackoverflow.com/questions/45694811/how-to-use-popper-js-with-bootstrap-4-beta
+          jQuery('#' + assetId + '-asset-holder input').each(function() {
             used_assets.push(jQuery(this).val());
           });
           used_assets.push(objID.data("asset-file").replace('.min', ''));
 
-          if (debug) console.log('onAssetChange-used_assets: '+used_assets);
-          if (debug) console.log('onAssetChange-data.results[0]: ',data.results[0]);  // Object { name: "clipboard.js", latest: "https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js", assets: Array[26] }
-          if (debug) console.log('onAssetChange-data.results[0].assets[0]: ',data.results[0].assets[0]);  //Object { version: "1.7.1", files: Array[2] }
+          if (debug) console.log('onAssetChange-used_assets: '+used_assets);  //popper.min.js,umd/popper.min.js,popper.js
+          if (debug) console.log('onAssetChange-data.results[0]: ',data.results[0]);  //Object { name: "popper.js", latest: "https://cdnjs.cloudflare.com/ajax/l…", assets: Array[98] }
+          if (debug) console.log('onAssetChange-data.results[0].assets[0]: ',data.results[0].assets[0]);  //Object { version: "1.13.0-next.1", files: Array[24] }
 
           //@todo check the selected version indeed
-          assetId = cleanName(data.results[0].name);
-          selectedVersion = jQuery('#' + assetId + '-row .wp-cdnjs_name input.plugin_version').val();
-          if (debug) console.log('onAssetChange-selectedVersion for '+theMainAsset+': '+selectedVersion);
           
           for (j = 0; j < data.results[0].assets.length; j++) {
             asset = data.results[0].assets[j]; //Object { version: "1.7.1", files: Array[react-popper.js,react-popper.min.js] }
@@ -337,15 +338,16 @@ function addLibraryRow(data, location) {
   row += '</td>';
   row += '<td class="wp-cdnjs_choose_version"><input type="hidden" id="' + nameID + '-choose_version" data-plugin-name="' + data.name + '" data-asset-id="' + cleanName(default_asset) + '" data-version="' + data.version + '" class="select2-version"></td>';
   row += '<td class="wp-cdnjs_assets">';
-  row += '<div id="' + cleanName(default_asset) + '-asset-holder" class="included_assets"><div><strong>' + cdnjs_text.inc_assets + ':</strong></div>';
+  row += '<div id="' + nameID + '-asset-holder" class="included_assets">';
   row += '<div id="' + cleanName(default_asset) + '-asset-row">';
-  row += default_asset + ' *';
+  row += '* ' + default_asset;
+  row += ' <i title="' + cdnjs_text.remove + '" style="cursor:pointer" class="fa fa-times" onclick="removeRow(\'#' + default_asset + '-asset-row\');"></i><br />';
   row += '<input type="hidden" name="cdnjs[cdnjs_settings_scripts][' + nameID + '][assets][]" value="' + default_asset + '">';
   row += '</div>';
   row += '</div>';
   row += '</td>';
   row += '<td class="wp-cdnjs_add_assets"><input type="hidden" id="' + nameID + '-add_assets" data-plugin-name="' + data.name + '" data-asset-id="' + cleanName(default_asset) + '" data-asset-file="' + default_asset + '" class="select2-assets"></td>';
-  row += '<td class="wp-cdnjs_location"><select name="cdnjs[cdnjs_settings_scripts][' + nameID + '][location]" id=""><option value="0" selected="selected">' + cdnjs_text.footer + '</option><option value="1">' + cdnjs_text.header + '</option></select></td>';
+  row += '<td class="wp-cdnjs_location"><select name="cdnjs[cdnjs_settings_scripts][' + nameID + '][location]" id=""><option value="1" selected="selected">' + cdnjs_text.footer + '</option><option value="0">' + cdnjs_text.header + '</option></select></td>';
   row += '<td class="wp-cdnjs_enable"><input type="hidden" name="cdnjs[cdnjs_settings_scripts][' + nameID + '][enabled]" id="" value="0"><input type="checkbox" name="cdnjs[cdnjs_settings_scripts][' + nameID + '][enabled]" id="" value="1" checked="checked"></td>';
   row += '<td><span class="wp-cdnjs-remove-row button-secondary">' + cdnjs_text.remove + '</span></td>';
   row += '</tr>';
@@ -357,22 +359,32 @@ function addLibraryRow(data, location) {
 }
 
 function addAssetRow(data, location) {
-  var nameID = cleanName(data.text);
-  var row = '<div id="' + nameID + '-asset-row">';
-  row += '&bull; ' + data.text;
-  row += ' <i title="' + cdnjs_text.remove + '" style="cursor:pointer" class="fa fa-times" onclick="removeRow(\'#' + nameID + '-asset-row\');"></i><br />';
-  row += '<input type="hidden" name="cdnjs[cdnjs_settings_scripts][' + location + '][assets][]" value="' + data.text + '"/>';
+  if (debug) console.log('addAssetRow-data: ',data);  //Object { id: "umd/popper.min.js", text: "umd/popper.min.js" }
+  if (debug) console.log('addAssetRow-location: '+location);  //popper.js
+  var parentId = cleanName(location);
+  var assetId = cleanName(data.text);
+  var row = '<div id="' + assetId + '-asset-row">';
+  row += data.text;
+  row += ' <i title="' + cdnjs_text.remove + '" style="cursor:pointer" class="fa fa-times" onclick="removeRow(\'#' + assetId + '-asset-row\');"></i><br />';
+  row += '<input type="hidden" name="cdnjs[cdnjs_settings_scripts][' + parentId + '][assets][]" value="' + data.text + '"/>';
   row += '</div>';
-  if (debug) console.log('addAssetRow-location: '+location);  //jquery
-  if (debug) console.log('addAssetRow-id: '+'#' + location + '-row div.included_assets');  //#jquery-row div.included_assets
-  jQuery('#' + location + '-row div.included_assets').append(row);
+  if (debug) console.log('addAssetRow-parentId: '+'#' + parentId + '-row div.included_assets');  //#jquery-row div.included_assets
+  jQuery('#' + parentId + '-row div.included_assets').append(row);
 }
 
 function changeVersion(location, newVersion) {
-  jQuery('#' + location + '-row .wp-cdnjs_name span.currentVersion').text(newVersion);
-  jQuery('#' + location + '-row .wp-cdnjs_name input.plugin_version').val(newVersion);
+  var parentId = cleanName(location);
+  jQuery('#' + parentId + '-row .wp-cdnjs_name span.currentVersion').text(newVersion);
+  jQuery('#' + parentId + '-row .wp-cdnjs_name input.plugin_version').val(newVersion);
+  jQuery('#' + parentId + '-choose_version').data('version', newVersion);
+  jQuery('#' + parentId + '-choose_version').val(newVersion);
 }
 
 function removeRow(row_id) {
-  jQuery(row_id).remove();
+  // disable deletion if there is only one asset (only one #assetId-asset-row)
+  if (jQuery(row_id).parent().children().size() > 1) {
+    jQuery(row_id).remove();
+  } else {
+    jQuery('h1').after( '<div id="setting-error-settings_updated" class="updated settings-error notice error is-dismissible"><p><strong>'+cdnjs_text.cannot_remove+'</strong></p><button type="button" class="notice-dismiss" onClick="div=this.parentElement;div.parentElement.removeChild(div);"><span class="screen-reader-text">'+cdnjs_text.dismiss+'</span></button></div>' );
+  }
 }

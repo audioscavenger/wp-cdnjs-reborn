@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WP cdnjs reborn
  * Plugin URI: http://wordpress.org/plugins/wp-cdnjs-reborn/
- * Description: Integrate easily CSS and JavaScript Library hosted by http://cdnjs.com on your WordPress site.
+ * Description: Wordpress plugin used to integrate easily CSS and JavaScript Library hosted by http://cdnjs.com on your WordPress site.
  * Version: 0.2.0
  * Author: Audioscavenger
  * Author URI: https://github.com/audioscavenger/wp-cdnjs-reborn
@@ -134,7 +134,7 @@ if(!class_exists('WP_CDNJS')) : /**
 			add_filter('plugin_action_links', array($this, 'plugin_action_links'), 10, 2);
 
 			// Activation hooks
-			//register_activation_hook(__FILE__, array($this, 'activate'));
+			register_activation_hook(__FILE__, array($this, 'activate'));
 			//register_deactivation_hook(__FILE__, array($this, 'deactivate'));
 
 			// Uninstall hook
@@ -210,6 +210,13 @@ if(!class_exists('WP_CDNJS')) : /**
 		 *
 		 */
 		public function activate() {
+
+			$settings = $this->get_settings(WP_CDNJS_OPTIONS);
+			if(!$settings) {
+				$settings = update_option(WP_CDNJS_OPTIONS, array(
+					'cdnjs_settings_enable_scripts' => TRUE
+				));
+			}
 		}
 
 		/**
@@ -244,7 +251,7 @@ if(!class_exists('WP_CDNJS')) : /**
 			?>
 			<div class="wrap">
 				<div id="icon-options-general" class="icon32"></div>
-				<h1><?php echo WP_CDNJS_PLUGIN_NAME; ?></h1>
+				<h2><?php echo WP_CDNJS_PLUGIN_NAME; ?></h2>
 				<?php
 				// Output settings-framework form
 				$this->settings_framework->settings();
@@ -253,11 +260,9 @@ if(!class_exists('WP_CDNJS')) : /**
 			<?php
 
 			// Get settings
-			//$settings = $this->get_settings(WP_CDNJS_OPTIONS);
-
+			$settings = $this->get_settings(WP_CDNJS_OPTIONS);
 			// for debugging
-      //echo '<pre>'.print_r($settings, TRUE).'</pre>';
-
+			//echo '<pre>' . var_export($settings, TRUE) . '</pre>';
 		}
 
 		/**
@@ -503,7 +508,7 @@ if(!class_exists('WP_CDNJS')) : /**
 
 		/**
 		 *
-		 * Add a settings link to plugins page
+		 * Add a settings link to plugins page.
 		 *
 		 * @param $links
 		 * @param $file
@@ -539,8 +544,6 @@ if(!class_exists('WP_CDNJS')) : /**
 				'no_addl_version'    => __('No Additional Version', 'wp-cdnjs'),
 				'remove'             => __('Remove', 'wp-cdnjs'),
 				'search_placeholder' => __('Search cdnjs Libraries', 'wp-cdnjs'),
-				'dismiss'            => __('Dismiss this notice.', 'wp-cdnjs'),
-				'cannot_remove'      => __('Cannot remove this asset, add another one first.', 'wp-cdnjs'),
 				'version'            => __('Version', 'wp-cdnjs')
 			);
 			wp_localize_script('wp-cdnjs', 'cdnjs_text', $translation_array);
@@ -563,9 +566,6 @@ if(!class_exists('WP_CDNJS')) : /**
 		 *
 		 */
 		public function cdnjs_scripts() {
-
-			//			var_dump($this->get_setting(WP_CDNJS_OPTIONS, 'settings', 'scripts'));
-			//			die;
 
 			$enabled = $this->get_setting(WP_CDNJS_OPTIONS, 'settings', 'enable_scripts');
 
