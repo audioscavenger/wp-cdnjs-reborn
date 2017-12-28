@@ -1,9 +1,9 @@
-# Copyright (C) 2017 WP cdnjs reborn
-# Copyright (C) 2014 WP cdnjs
+# Copyright (C) 2017 WP CDNjs reborn
+# Copyright (C) 2014 WP CDNjs
 # This file is distributed under the same license as the WP cdnjs package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP cdnjs reborn 0.2.0\n"
+"Project-Id-Version: WP CDNjs Reborn 0.2.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/wp-cdnjs-reborn\n"
 "POT-Creation-Date: 2017-12-17 20:32:04+00:00\n"
 "MIME-Version: 1.0\n"
@@ -59,76 +59,76 @@ msgstr ""
 msgid "Do you wish to <strong>completely uninstall</strong>"
 msgstr ""
 
-#: views/wp-cdnjs-settings.php:11 wp-cdnjs.php:351
+#: views/wp-cdnjs-reborn-settings.php:11 wp-cdnjs-reborn.php:351
 msgid "Settings"
 msgstr ""
 
-#: views/wp-cdnjs-settings.php:17
+#: views/wp-cdnjs-reborn-settings.php:17
 msgid "Enable scripts"
 msgstr ""
 
-#: views/wp-cdnjs-settings.php:18
+#: views/wp-cdnjs-reborn-settings.php:18
 msgid "Enqueue scripts for output on your site"
 msgstr ""
 
-#: views/wp-cdnjs-settings.php:25
+#: views/wp-cdnjs-reborn-settings.php:25
 msgid "Find cdnjs Libraries"
 msgstr ""
 
-#: views/wp-cdnjs-settings.php:26
+#: views/wp-cdnjs-reborn-settings.php:26
 msgid "Search for CSS and JavaScript libraries to include."
 msgstr ""
 
-#: views/wp-cdnjs-settings.php:45
+#: views/wp-cdnjs-reborn-settings.php:45
 msgid "Enqueued cdnjs Libraries"
 msgstr ""
 
-#: views/wp-cdnjs-settings.php:51
+#: views/wp-cdnjs-reborn-settings.php:51
 msgid "Plugin Name"
 msgstr ""
 
-#: views/wp-cdnjs-settings.php:52
+#: views/wp-cdnjs-reborn-settings.php:52
 msgid "Assets"
 msgstr ""
 
-#: views/wp-cdnjs-settings.php:53
+#: views/wp-cdnjs-reborn-settings.php:53
 msgid "Add Assests"
 msgstr ""
 
-#: views/wp-cdnjs-settings.php:54
+#: views/wp-cdnjs-reborn-settings.php:54
 msgid "Location"
 msgstr ""
 
-#: views/wp-cdnjs-settings.php:55
+#: views/wp-cdnjs-reborn-settings.php:55
 msgid "Enable"
 msgstr ""
 
-#: views/wp-cdnjs-settings.php:56 views/wp-cdnjs-settings.php:97
-#: wp-cdnjs.php:372
+#: views/wp-cdnjs-reborn-settings.php:56 views/wp-cdnjs-reborn-settings.php:97
+#: wp-cdnjs-reborn.php:372
 msgid "Remove"
 msgstr ""
 
-#: views/wp-cdnjs-settings.php:64 wp-cdnjs.php:374
+#: views/wp-cdnjs-reborn-settings.php:64 wp-cdnjs-reborn.php:374
 msgid "Version"
 msgstr ""
 
-#: views/wp-cdnjs-settings.php:71 wp-cdnjs.php:370 wp-cdnjs.php:371
+#: views/wp-cdnjs-reborn-settings.php:71 wp-cdnjs-reborn.php:370 wp-cdnjs-reborn.php:371
 msgid "Included Assets"
 msgstr ""
 
-#: views/wp-cdnjs-settings.php:90 wp-cdnjs.php:368
+#: views/wp-cdnjs-reborn-settings.php:90 wp-cdnjs-reborn.php:368
 msgid "Footer"
 msgstr ""
 
-#: views/wp-cdnjs-settings.php:91 wp-cdnjs.php:369
+#: views/wp-cdnjs-reborn-settings.php:91 wp-cdnjs-reborn.php:369
 msgid "Header"
 msgstr ""
 
-#: wp-cdnjs.php:367
+#: wp-cdnjs-reborn.php:367
 msgid "Add Assets"
 msgstr ""
 
-#: wp-cdnjs.php:373
+#: wp-cdnjs-reborn.php:373
 msgid "Search cdnjs Libraries"
 msgstr ""
 

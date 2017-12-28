@@ -2,14 +2,13 @@ body.dragging, body.dragging * {
   cursor: move !important;
 }
 
+.menu_cdnjs {margin-right: 4px; display: inline; vertical-align: middle; margin-top: -1px;}  
+
 .dragged {
   position: absolute;
   opacity: 0.5;
   z-index: 2000;
 }
-
-
-
 
 table#cdnjs-selected  .fa-arrows-v{
 cursor:move;
@@ -21,18 +20,18 @@ table#cdnjs-selected th {
 
 }
 .form-table td {
-	vertical-align: top;
+  vertical-align: top;
 }
 
 .select2-results .select2-disabled {
-    background:#888;
-    color:#fff;
+  background:#888;
+  color:#fff;
 }
 
 .select2-results .select2-disabled .select2-result-label {
-    cursor: default;
+  cursor: default;
 }
 
 /*.select2-result-selectable {
-    cursor:pointer;
+  cursor:pointer;
 }*/

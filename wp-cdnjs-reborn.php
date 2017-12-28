@@ -3,12 +3,12 @@
  * Plugin Name: WP cdnjs reborn
  * Plugin URI: http://wordpress.org/plugins/wp-cdnjs-reborn/
  * Description: Integrate easily CSS and JavaScript Library hosted by http://cdnjs.com on your WordPress site.
- * Version: 0.2.0
+ * Version: 0.2.1
  * Author: Audioscavenger
  * Author URI: https://github.com/audioscavenger/wp-cdnjs-reborn
  * License: GNU General Public License v3
  * License URI: license.txt
- * Text Domain: wp-cdnjs
+ * Text Domain: wp-cdnjs-reborn
  * Domain Path: /lang
  */
 
@@ -41,7 +41,7 @@ if(!function_exists('add_action')) {
 }
 
 if(!defined('WP_CDNJS_VERSION')) {
-	define('WP_CDNJS_VERSION', '0.2.0');
+	define('WP_CDNJS_VERSION', '0.2.1');
 }
 
 if(!defined('WP_CDNJS_MIN_WP_VERSION')) {
@@ -61,7 +61,7 @@ if(!defined('WP_CDNJS_DIR_PATH')) {
 }
 
 if(!defined('WP_CDNJS_DIR_URL')) {
-	define('WP_CDNJS_DIR_URL', trailingslashit(plugins_url(NULL, __FILE__)));
+	define('WP_CDNJS_DIR_URL', plugins_url(NULL, __FILE__));
 }
 
 if(!defined('WP_CDNJS_OPTIONS')) {
@@ -108,14 +108,14 @@ if(!class_exists('WP_CDNJS')) : /**
 		 *
 		 * @var string
 		 */
-		private $select2_version = '3.5.2';
+		private $select2_version = '3.5.4';
 
 		/**
 		 * Version of Font Awesome to use for the admin screens.
 		 *
 		 * @var string
 		 */
-		private $fa_version = '4.2.0';
+		private $fa_version = '4.7.0';
 
 		/**
 		 * Initialize the plugin. Set up actions / filters.
@@ -141,9 +141,9 @@ if(!class_exists('WP_CDNJS')) : /**
 			register_uninstall_hook(WP_CDNJS_DIR_PATH.'uninstall.php', NULL);
 
 			// Settings Framework
-			add_action('admin_menu', array($this, 'admin_menu'), 99);
+      add_action('admin_menu', array($this, 'admin_menu'), 99);
 			require_once(WP_CDNJS_DIR_PATH.'lib/settings-framework/settings-framework.php');
-			$this->settings_framework = new wp_cdnjs_settings(WP_CDNJS_DIR_PATH.'views/wp-cdnjs-settings.php', WP_CDNJS_OPTIONS);
+			$this->settings_framework = new wp_cdnjs_settings(WP_CDNJS_DIR_PATH.'views/wp-cdnjs-reborn-settings.php', WP_CDNJS_OPTIONS);
 			// Add an optional settings-framework validation filter (recommended)
 			add_filter($this->settings_framework->get_option_group().'_validate', array($this, 'validate_settings'));
 
@@ -200,7 +200,7 @@ if(!class_exists('WP_CDNJS')) : /**
 		 *
 		 */
 		public function load_textdomain() {
-			load_plugin_textdomain('wp-cdnjs', FALSE, WP_CDNJS_DIR_PATH.'/lang');
+			load_plugin_textdomain('wp-cdnjs-reborn', FALSE, WP_CDNJS_DIR_PATH.'/lang');
 		}
 
 		/**
@@ -224,16 +224,37 @@ if(!class_exists('WP_CDNJS')) : /**
 		public function install() {
 		}
 
-		/**
+     /**
 		 * WordPress options page
 		 *
 		 */
 		public function admin_menu() {
 			// Settings page
-			add_submenu_page('options-general.php', __(WP_CDNJS_PLUGIN_NAME, 'wp-cdnjs'), __(WP_CDNJS_PLUGIN_NAME, 'wp-cdnjs'), 'manage_options', WP_CDNJS_PLUGIN_SLUG, array(
-				$this,
-				'settings_page'
-			));
+      // add_options_page puts a menu/link in the “Settings” menu
+      // add_menu_page puts a menu/link at the same level as “Dashboard”, “Posts”, “Media”, etc.
+      // add_submenu_page puts a menu/link as a child underneath “Dashboard”, “Posts”, “Media”, etc.
+
+      // /*
+      // add_options_page( $page_title, $menu_title, $capability, $menu_slug, $function); // WP 4.x
+      add_options_page(
+        WP_CDNJS_PLUGIN_NAME, 
+        '<img class="menu_cdnjs" src="'. WP_CDNJS_DIR_URL .'/assets/images/menu-icon.png" alt="" />' . __(WP_CDNJS_PLUGIN_NAME, 'wp-cdnjs-reborn'), 
+        'manage_options', 
+        WP_CDNJS_PLUGIN_SLUG, 
+        array( $this, 'settings_page' )
+      );
+      // */
+      /*
+      // add_submenu_page( $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $function = '' );
+			add_submenu_page(
+        'options-general.php', 
+        __(WP_CDNJS_PLUGIN_NAME, 'wp-cdnjs-reborn'), 
+        '<img class="menu_cdnjs" src="'. WP_CDNJS_DIR_URL .'/images/menu-icon.png" alt="" />' . __(WP_CDNJS_PLUGIN_NAME, 'wp-cdnjs-reborn'), 
+        'manage_options', 
+        WP_CDNJS_PLUGIN_SLUG, 
+        array( $this, 'settings_page' )
+      );
+      */
 		}
 
 		/**
@@ -512,7 +533,7 @@ if(!class_exists('WP_CDNJS')) : /**
 		 */
 		public function plugin_action_links($links, $file) {
 			if($file == plugin_basename(__FILE__)) {
-				$settings_link = '<a href="options-general.php?page='.WP_CDNJS_PLUGIN_SLUG.'" title="'.__(WP_CDNJS_PLUGIN_NAME, 'wp-cdnjs').'">'.__('Settings', 'wp-cdnjs').'</a>';
+				$settings_link = '<a href="options-general.php?page='.WP_CDNJS_PLUGIN_SLUG.'" title="'.__(WP_CDNJS_PLUGIN_NAME, 'wp-cdnjs-reborn').'">'.__('Settings', 'wp-cdnjs-reborn').'</a>';
 				array_unshift($links, $settings_link);
 			}
 
@@ -528,23 +549,24 @@ if(!class_exists('WP_CDNJS')) : /**
 			wp_enqueue_script('jquery-ui-sortable');
 			//wp_enqueue_script('jquery-ui-core');
 
-			wp_register_script('wp-cdnjs', WP_CDNJS_DIR_URL.'/assets/js/wp-cdnjs.js');
+			// wp_register_script('wp-cdnjs-reborn', WP_CDNJS_DIR_URL.'/assets/js/wp-cdnjs-reborn.js'); // for debugging
+      wp_register_script('wp-cdnjs-reborn', WP_CDNJS_DIR_URL.'/assets/js/wp-cdnjs-reborn.min.js');
 			$translation_array = array(
-				'add_assets'         => __('Add Assets', 'wp-cdnjs'),
-				'choose_version'     => __('Choose Version', 'wp-cdnjs'),
-				'footer'             => __('Footer', 'wp-cdnjs'),
-				'header'             => __('Header', 'wp-cdnjs'),
-				'inc_assets'         => __('Included Assets', 'wp-cdnjs'),
-				'no_addl_assets'     => __('No Additional Assets', 'wp-cdnjs'),
-				'no_addl_version'    => __('No Additional Version', 'wp-cdnjs'),
-				'remove'             => __('Remove', 'wp-cdnjs'),
-				'search_placeholder' => __('Search cdnjs Libraries', 'wp-cdnjs'),
-				'dismiss'            => __('Dismiss this notice.', 'wp-cdnjs'),
-				'cannot_remove'      => __('Cannot remove this asset, add another one first.', 'wp-cdnjs'),
-				'version'            => __('Version', 'wp-cdnjs')
+				'add_assets'         => __('Add Assets', 'wp-cdnjs-reborn'),
+				'choose_version'     => __('Choose Version', 'wp-cdnjs-reborn'),
+				'footer'             => __('Footer', 'wp-cdnjs-reborn'),
+				'header'             => __('Header', 'wp-cdnjs-reborn'),
+				'inc_assets'         => __('Included Assets', 'wp-cdnjs-reborn'),
+				'no_addl_assets'     => __('No Additional Assets', 'wp-cdnjs-reborn'),
+				'no_addl_version'    => __('No Additional Version', 'wp-cdnjs-reborn'),
+				'remove'             => __('Remove', 'wp-cdnjs-reborn'),
+				'search_placeholder' => __('Search cdnjs Libraries', 'wp-cdnjs-reborn'),
+				'dismiss'            => __('Dismiss this notice.', 'wp-cdnjs-reborn'),
+				'cannot_remove'      => __('Cannot remove this asset, add another one first.', 'wp-cdnjs-reborn'),
+				'version'            => __('Version', 'wp-cdnjs-reborn')
 			);
-			wp_localize_script('wp-cdnjs', 'cdnjs_text', $translation_array);
-			wp_enqueue_script('wp-cdnjs');
+			wp_localize_script('wp-cdnjs-reborn', 'cdnjs_text', $translation_array);
+			wp_enqueue_script('wp-cdnjs-reborn');
 		}
 
 		/**
@@ -555,7 +577,7 @@ if(!class_exists('WP_CDNJS')) : /**
 			wp_enqueue_style('cdnjs-select2', $this->cdnjs_uri . 'select2/' . $this->select2_version . '/select2.min.css');
 			wp_enqueue_style('cdnjs-select2-bootstrap', $this->cdnjs_uri . 'select2/' . $this->select2_version . '/select2-bootstrap.min.css');
 			wp_enqueue_style('cdnjs-font-awesome', $this->cdnjs_uri . 'font-awesome/' . $this->fa_version . '/css/font-awesome.min.css');
-			wp_enqueue_style('cdnjs-styles', WP_CDNJS_DIR_URL . '/assets/css/cdnjs-styles.min.css');
+			wp_enqueue_style('cdnjs-styles', WP_CDNJS_DIR_URL . '/assets/css/cdnjs-styles.css');
 		}
 
 		/**
