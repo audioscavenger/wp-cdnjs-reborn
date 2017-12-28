@@ -61,7 +61,7 @@ if(!defined('WP_CDNJS_DIR_PATH')) {
 }
 
 if(!defined('WP_CDNJS_DIR_URL')) {
-	define('WP_CDNJS_DIR_URL', trailingslashit(plugins_url(NULL, __FILE__)));
+	define('WP_CDNJS_DIR_URL', plugins_url(NULL, __FILE__));
 }
 
 if(!defined('WP_CDNJS_OPTIONS')) {
@@ -235,7 +235,7 @@ if(!class_exists('WP_CDNJS')) : /**
       // add_submenu_page puts a menu/link as a child underneath “Dashboard”, “Posts”, “Media”, etc.
 
       // /*
-      // add_options_page( $page_title, $menu_title, $capability, $menu_slug, $function);
+      // add_options_page( $page_title, $menu_title, $capability, $menu_slug, $function); // WP 4.x
       add_options_page(
         WP_CDNJS_PLUGIN_NAME, 
         '<img class="menu_cdnjs" src="'. WP_CDNJS_DIR_URL .'/assets/images/menu-icon.png" alt="" />' . __(WP_CDNJS_PLUGIN_NAME, 'wp-cdnjs-reborn'), 
@@ -549,7 +549,8 @@ if(!class_exists('WP_CDNJS')) : /**
 			wp_enqueue_script('jquery-ui-sortable');
 			//wp_enqueue_script('jquery-ui-core');
 
-			wp_register_script('wp-cdnjs-reborn', WP_CDNJS_DIR_URL.'/assets/js/wp-cdnjs-reborn.js');
+			// wp_register_script('wp-cdnjs-reborn', WP_CDNJS_DIR_URL.'/assets/js/wp-cdnjs-reborn.js'); // for debugging
+      wp_register_script('wp-cdnjs-reborn', WP_CDNJS_DIR_URL.'/assets/js/wp-cdnjs-reborn.min.js');
 			$translation_array = array(
 				'add_assets'         => __('Add Assets', 'wp-cdnjs-reborn'),
 				'choose_version'     => __('Choose Version', 'wp-cdnjs-reborn'),

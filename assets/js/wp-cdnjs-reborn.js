@@ -1,4 +1,3 @@
-// wp-cdnjs.orig.js modified
 function debug() {
   return false;
 }
@@ -256,12 +255,6 @@ function onVersionChange() {
             });
             }
 
-            // if(jQuery.inArray(assets[i].version, currentVersion) == -1 ) {
-              // results.push({
-                // id:   assets[i].version,
-                // text: assets[i].version
-              // });
-            // }
           }
           // if (debug()) console.log('onVersionChange-data: ',data); //  Array [ Object, 88 more… ]
           // return data;
@@ -286,7 +279,6 @@ function onVersionChange() {
       if(!e.object) {
         e.object = data;
       }
-      //console.log(jQuery('#'+obj.id).data( "plugin" )); // ???
       if (debug()) console.log('onVersionChange-e.object: ',e.object);  // Object { id: "core.js", text: "core.js" }
       if (debug()) console.log("onVersionChange-objID.data('plugin-name'): "+objID.data("plugin-name"));  //jquery
       if (debug()) console.log("onVersionChange-"+objID.data("plugin-name")+"-currentVersion="+objID.data("version")+" newVersion="+e.object.text);
