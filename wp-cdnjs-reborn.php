@@ -142,7 +142,7 @@ if(!class_exists('WP_CDNJS')) : /**
 
 			// Settings Framework
       add_action('admin_menu', array($this, 'admin_menu'), 99);
-			require_once(WP_CDNJS_DIR_PATH.'lib/settings-framework/settings-framework.php');
+			require_once(WP_CDNJS_DIR_PATH.'lib/settings-framework.php');
 			$this->settings_framework = new wp_cdnjs_settings(WP_CDNJS_DIR_PATH.'views/wp-cdnjs-reborn-settings.php', WP_CDNJS_OPTIONS);
 			// Add an optional settings-framework validation filter (recommended)
 			add_filter($this->settings_framework->get_option_group().'_validate', array($this, 'validate_settings'));
