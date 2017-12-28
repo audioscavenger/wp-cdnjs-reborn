@@ -3,16 +3,29 @@ wp-cdnjs-reborn
 
 This is a Wordpress plugin used to integrate easily CSS and JavaScript Library hosted by http://cdnjs.com on your WordPress site.
 
+Meta
+----
+ * Plugin Name: WP cdnjs reborn
+ * Plugin URI: http://wordpress.org/plugins/wp-cdnjs-reborn/
+ * Description: Integrate easily CSS and JavaScript Library hosted by http://cdnjs.com on your WordPress site.
+ * Version: 0.2.1
+ * Author: Audioscavenger
+ * Author URI: https://github.com/audioscavenger/wp-cdnjs-reborn
+ * License: GNU General Public License v3
+ * License URI: license.txt
+ * Text Domain: wp-cdnjs-reborn
+ * Domain Path: /lang
+
 History
 -------
 * Contributors          : audioscavenger
 * Original Contributors : mindshare, geetjacobs, patkirts
 * Original name         : WP cdnjs
-* Topics: php wordpress-plugin cdnjs js libraries 
-* Requires at least: 3.8
-* Tested up to: 4.9.1
-* License: GPLv3
-* License URI: http://www.gnu.org/licenses/gpl-3.0.html
+* Topics                : php wordpress-plugin cdnjs js libraries 
+* Requires at least     : 3.8
+* Tested up to          : 4.9.1
+* License               : GPLv3
+* License URI           : http://www.gnu.org/licenses/gpl-3.0.html
 
 Description
 -----------
@@ -37,7 +50,10 @@ or...
 
 Screenshots
 -----------
-
+![Settings](https://github.com/audioscavenger/wp-cdnjs-reborn/blob/master/screenshot-1.png)
+![Browse Libraries](https://github.com/audioscavenger/wp-cdnjs-reborn/blob/master/screenshot-2.png)
+![Change Version](https://github.com/audioscavenger/wp-cdnjs-reborn/blob/master/screenshot-3.png)
+![Add Assets](https://github.com/audioscavenger/wp-cdnjs-reborn/blob/master/screenshot-4.png)
 
 Changelog
 ---------
