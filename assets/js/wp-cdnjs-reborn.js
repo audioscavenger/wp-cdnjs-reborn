@@ -36,7 +36,9 @@ jQuery(document).ready(function(jQuery) {
             for(var j = 0; j < data.results.length; j++) {
               for(var i = 0; i < usedPlugins.length; i++) {
                 if(usedPlugins[i] === data.results[j].name) {
+                  if (debug()) console.log('remoteAjaxAutoComplete-data.results[j]:',data.results[j]);  //  Object { name: "popper.js", latest: "https://cdnjs.cloudflare.com/ajax/l…", version: "1.13.0", filename: "popper.min.js", description: "A kickass library to manage your po…", assets: Array[98] }
                   data.results[j].disabled = true;
+                  if (debug()) console.log('remoteAjaxAutoComplete-data.results[j]:',data.results[j]);  //  Object { name: "popper.js", latest: "https://cdnjs.cloudflare.com/ajax/l…", version: "1.13.0", filename: "popper.min.js", description: "A kickass library to manage your po…", assets: Array[98], disabled: true }
                   break;
                 } else {
                   data.results[j].disabled = false;
@@ -44,22 +46,23 @@ jQuery(document).ready(function(jQuery) {
               }
             }
           }
-          if (debug()) console.log('remoteAjaxAutoComplete-data: ',data);
+          if (debug()) console.log('remoteAjaxAutoComplete-data: ',data); //  Object { results: Array[151], total: 151 }
           return data;
         }
       },
-      formatResult:       formatResults,
-      formatSelection:    formatSelection
+      formatResult:       formatLibraryResults,
+      formatSelection:    formatLibrarySelection
     });
 
   }
 
-  // formatResults in dropdown list with name, version, description
-  function formatResults(data) {
+  // formatLibraryResults in dropdown list with name, version, description
+  function formatLibraryResults(data) {
     return '<div id="opt-' + data.filename + '" class="cdnjs-selection" title="' + data.description + '">'+data.name+' '+data.version+' ( '+data.assets.length+' versions) '+data.description+'</div>';
   }
-
-  function formatSelection(data, container) {
+  
+  // update usedPlugins list for next Library browse
+  function formatLibrarySelection(data, container) {
     usedPlugins.push(data.name);
     return data.name;
   }
@@ -138,8 +141,8 @@ function onAssetChange() {
           assetId = cleanName(data.results[0].name);
           selectedVersion = jQuery('#' + assetId + '-row .wp-cdnjs_name input.plugin_version').val(); //1.13.0
           theMainAsset = objID.data("asset-id");
-          if (debug()) console.log('onAssetChange-theMainAsset: '+theMainAsset);  //popper-min-js
-          if (debug()) console.log('onAssetChange-assetId for '+theMainAsset+': '+assetId); //popper-min-js: popper-js
+          if (debug()) console.log('onAssetChange-theMainAsset: '+theMainAsset);  //  popper-min-js
+          if (debug()) console.log('onAssetChange-assetId:      '+assetId);       //  popper-js
           if (debug()) console.log('onAssetChange-selectedVersion for '+theMainAsset+': '+selectedVersion); //popper-min-js: 1.13.0
 
           //@todo: change '#' + theMainAsset + '-asset-holder to '#' + assetId + '-asset-holder
@@ -149,11 +152,12 @@ function onAssetChange() {
           jQuery('#' + assetId + '-asset-holder input').each(function() {
             used_assets.push(jQuery(this).val());
           });
-          used_assets.push(objID.data("asset-file").replace('.min', ''));
+          // line bellow is used to avoid selection of non min version of main asset.
+          // used_assets.push(objID.data("asset-file").replace('.min.', '.'));
 
-          if (debug()) console.log('onAssetChange-used_assets: '+used_assets);  //popper.min.js,umd/popper.min.js,popper.js
-          if (debug()) console.log('onAssetChange-data.results[0]: ',data.results[0]);  //Object { name: "popper.js", latest: "https://cdnjs.cloudflare.com/ajax/l…", assets: Array[98] }
-          if (debug()) console.log('onAssetChange-data.results[0].assets[0]: ',data.results[0].assets[0]);  //Object { version: "1.13.0-next.1", files: Array[24] }
+          if (debug()) console.log('onAssetChange-used_assets: '+used_assets);  //  popper.min.js,umd/popper.min.js,popper.js
+          if (debug()) console.log('onAssetChange-data.results[0]: ',data.results[0]);  //  Object { name: "popper.js", latest: "https://cdnjs.cloudflare.com/ajax/l…", assets: Array[98] }
+          if (debug()) console.log('onAssetChange-data.results[0].assets[0]: ',data.results[0].assets[0]);  //  Object { version: "1.13.0-next.1", files: Array[24] }
 
           //@todo check the selected version indeed
           
@@ -204,6 +208,10 @@ function onVersionChange() {
   jQuery('.select2-version').not('.select2-offscreen').each(function(i, obj) {
     //Attach select2 to all version dropdowns
     var objID = jQuery('#' + obj.id);
+    var pluginId = objID.data("plugin-id");
+    // var currentVersion = objID.data("version");
+    var currentVersion = jQuery('#' + pluginId + '-row input.plugin_version').val();
+    if (debug()) console.log('onVersionChange-pluginId: '+pluginId+' currentVersion:'+currentVersion);
     if (debug()) console.log('onVersionChange-objID: ',objID);
     objID.select2({
       width:           "100%",
@@ -223,36 +231,55 @@ function onVersionChange() {
         },
         results:  function(data, page) {
           var results = [];
-          var currentVersion;
-
-          if (debug()) console.log('onVersionChange-objID: ',objID);
-          if (debug()) console.log('onVersionChange-objID.data("asset-id")='+objID.data("asset-id"));
-          theMainAsset = objID.data("asset-id");
-          if (debug()) console.log('onVersionChange-objID.data("version")='+objID.data("version"));
-          currentVersion = objID.data("version");
-
+          // currentVersion = objID.data("version");  // this works magically: the value is actually not updated in the DOM so where does it come from?
+          currentVersion = jQuery('#' + pluginId + '-row input.plugin_version').val();
+          if (debug()) console.log('onVersionChange-currentVersion: ',currentVersion);  // 1.7.1
           if (debug()) console.log('onVersionChange-data.results[0]: ',data.results[0]);  // Object { name: "clipboard.js", latest: "https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js", assets: Array[26] }
           if (debug()) console.log('onVersionChange-data.results[0].assets[0]: ',data.results[0].assets[0]);  //Object { version: "1.7.1", files: Array[2] }
 
-          var assets = data.results[0].assets; //Object [{ version: "1.7.1", files: Array[react-popper.js,react-popper.min.js] },{..}]
+          var assets = data.results[0].assets; // Object [{ version: "1.7.1", files: Array[react-popper.js,react-popper.min.js] },{..}]
           for(i = 0; i < assets.length; i++) {
-            if (debug()) console.log('onVersionChange-checking assets.assets[i]: ',assets[i]);
-
-            if(jQuery.inArray(assets[i].version, currentVersion) == -1 ) {
-              results.push({
-                id:   assets[i].version,
-                text: assets[i].version
-              });
+            if(currentVersion == assets[i].version) {
+            if (debug()) console.log('onVersionChange-checking assets[i]: ',assets[i]);
+            results.push({
+              id:   assets[i].version,
+              text: assets[i].version,
+              disabled: true
+            });
+            if (debug()) console.log('onVersionChange-checking results  : ',results);
+              // break;
+            } else {
+            results.push({
+              id:   assets[i].version,
+              text: assets[i].version,
+              disabled: false
+            });
             }
-          }
 
+            // if(jQuery.inArray(assets[i].version, currentVersion) == -1 ) {
+              // results.push({
+                // id:   assets[i].version,
+                // text: assets[i].version
+              // });
+            // }
+          }
+          // if (debug()) console.log('onVersionChange-data: ',data); //  Array [ Object, 88 more… ]
+          // return data;
+          if (debug()) console.log('onVersionChange-results: ',results); //  
           return {
             results: results
           };
 
         }
-      }
+      },
+      formatSelection:    formatVersionSelection
     });
+
+    // update usedPlugins list for next Library browse
+    function formatVersionSelection(data, container) {
+      currentVersion = data.version;
+      return data.version;
+    }
 
     //Call on change for assest
     objID.on('select2-selecting', function(e, data) {
@@ -336,12 +363,11 @@ function addLibraryRow(data, location) {
   row += '<input type="hidden" name="cdnjs[cdnjs_settings_scripts][' + nameID + '][name]" class="plugin_name" value="' + data.name + '"/>';
   row += '<input type="hidden" name="cdnjs[cdnjs_settings_scripts][' + nameID + '][version]" class="plugin_version" value="' + data.version + '"/>';
   row += '</td>';
-  row += '<td class="wp-cdnjs_choose_version"><input type="hidden" id="' + nameID + '-choose_version" data-plugin-name="' + data.name + '" data-asset-id="' + cleanName(default_asset) + '" data-version="' + data.version + '" class="select2-version"></td>';
+  row += '<td class="wp-cdnjs_choose_version"><input type="hidden" id="' + nameID + '-choose_version" data-plugin-id="' + nameID + '" data-plugin-name="' + data.name + '" data-version="' + data.version + '" class="select2-version"></td>';
   row += '<td class="wp-cdnjs_assets">';
   row += '<div id="' + nameID + '-asset-holder" class="included_assets">';
-  row += '<div id="' + cleanName(default_asset) + '-asset-row">';
-  row += '* ' + default_asset;
-  row += ' <i title="' + cdnjs_text.remove + '" style="cursor:pointer" class="fa fa-times" onclick="removeRow(\'#' + default_asset + '-asset-row\');"></i><br />';
+  row += '<div id="' + cleanName(default_asset) + '-asset-row"><strong>'+default_asset+'</strong>';
+  row += ' <i title="' + cdnjs_text.remove + '" style="cursor:pointer" class="fa fa-times" onclick="removeRow(\'#' + cleanName(default_asset) + '-asset-row\');"></i><br />';
   row += '<input type="hidden" name="cdnjs[cdnjs_settings_scripts][' + nameID + '][assets][]" value="' + default_asset + '">';
   row += '</div>';
   row += '</div>';
@@ -374,17 +400,23 @@ function addAssetRow(data, location) {
 
 function changeVersion(location, newVersion) {
   var parentId = cleanName(location);
-  jQuery('#' + parentId + '-row .wp-cdnjs_name span.currentVersion').text(newVersion);
-  jQuery('#' + parentId + '-row .wp-cdnjs_name input.plugin_version').val(newVersion);
+  jQuery('#' + parentId + '-row span.currentVersion').text(newVersion);
+  jQuery('#' + parentId + '-row input.plugin_version').val(newVersion);
+  // @todo: BUG: for some reason, these 2 lines do not update the newVersion:
   jQuery('#' + parentId + '-choose_version').data('version', newVersion);
   jQuery('#' + parentId + '-choose_version').val(newVersion);
 }
 
 function removeRow(row_id) {
   // disable deletion if there is only one asset (only one #assetId-asset-row)
+  if (debug()) console.log('removeRow('+row_id+'):jQuery(row_id).parent().children().size()='+jQuery(row_id).parent().children().size());
   if (jQuery(row_id).parent().children().size() > 1) {
     jQuery(row_id).remove();
   } else {
-    jQuery('h1').after( '<div id="setting-error-settings_updated" class="updated settings-error notice error is-dismissible"><p><strong>'+cdnjs_text.cannot_remove+'</strong></p><button type="button" class="notice-dismiss" onClick="div=this.parentElement;div.parentElement.removeChild(div);"><span class="screen-reader-text">'+cdnjs_text.dismiss+'</span></button></div>' );
+    jQuery('h1').after( '<div id="setting-error-settings_updated" class="updated settings-error notice error is-dismissible">\
+    <p><strong>'+cdnjs_text.cannot_remove+'</strong></p>\
+    <button type="button" class="notice-dismiss" onClick="div=this.parentElement;div.parentElement.removeChild(div);">\
+      <span class="screen-reader-text">'+cdnjs_text.dismiss+'</span>\
+    </button></div>' );
   }
 }

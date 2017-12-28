@@ -576,7 +576,7 @@ if(!class_exists('WP_CDNJS')) : /**
 			wp_enqueue_style('cdnjs-select2', $this->cdnjs_uri . 'select2/' . $this->select2_version . '/select2.min.css');
 			wp_enqueue_style('cdnjs-select2-bootstrap', $this->cdnjs_uri . 'select2/' . $this->select2_version . '/select2-bootstrap.min.css');
 			wp_enqueue_style('cdnjs-font-awesome', $this->cdnjs_uri . 'font-awesome/' . $this->fa_version . '/css/font-awesome.min.css');
-			wp_enqueue_style('cdnjs-styles', WP_CDNJS_DIR_URL . '/assets/css/cdnjs-styles.min.css');
+			wp_enqueue_style('cdnjs-styles', WP_CDNJS_DIR_URL . '/assets/css/cdnjs-styles.css');
 		}
 
 		/**

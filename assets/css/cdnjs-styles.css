@@ -10,9 +10,6 @@ body.dragging, body.dragging * {
   z-index: 2000;
 }
 
-
-
-
 table#cdnjs-selected  .fa-arrows-v{
 cursor:move;
 text-align: center;
@@ -23,18 +20,18 @@ table#cdnjs-selected th {
 
 }
 .form-table td {
-	vertical-align: top;
+  vertical-align: top;
 }
 
 .select2-results .select2-disabled {
-    background:#888;
-    color:#fff;
+  background:#888;
+  color:#fff;
 }
 
 .select2-results .select2-disabled .select2-result-label {
-    cursor: default;
+  cursor: default;
 }
 
 /*.select2-result-selectable {
-    cursor:pointer;
+  cursor:pointer;
 }*/
