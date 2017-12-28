@@ -46,6 +46,9 @@ Changelog
   * rename wp-cdnjs.php to wp-cdnjs-reborn.php
   * integrate 0.13 functions
   * move main functions to lib/functions.php
+  * add minified js
+  * table in Settings is now full width
+  * cleanup php code everywhere
 
 * 0.2.0
   * Initial fork from https://github.com/mindsharelabs/wp-cdnjs.git to https://github.com/audioscavenger/wp-cdnjs-reborn.git
