@@ -1,14 +1,15 @@
 wp-cdnjs-reborn
 ===============
 
-This is a Wordpress plugin used to integrate easily CSS and JavaScript Library hosted by http://cdnjs.com on your WordPress site.
+Integrates easily CSS and JavaScript Libraries hosted by CDNjs.com. Browse, select version and sub-assets to fit your needs.
+Proudly served by Audioscavenger (http://www.blog.derewonko.com/).
 
 Meta
 ----
  * Plugin Name: WP cdnjs reborn
  * Plugin URI: http://wordpress.org/plugins/wp-cdnjs-reborn/
  * Description: Integrate easily CSS and JavaScript Library hosted by http://cdnjs.com on your WordPress site.
- * Version: 0.2.1
+ * Version: 0.2.2
  * Author: Audioscavenger
  * Author URI: https://github.com/audioscavenger/wp-cdnjs-reborn
  * License: GNU General Public License v3
@@ -57,6 +58,11 @@ Screenshots
 
 Changelog
 ---------
+* 0.2.2
+  * Release date: January 7, 2018
+  * Release post: [WP CDNjs Reborn](https://wp.me/p9sB0t-7Y)
+  * Creation of the readme.txt. This took me like 3 hours so it totallty justifies a new release.
+
 * 0.2.1
   * add menu_icon + css assets
   * rename wp-cdnjs.php to wp-cdnjs-reborn.php
