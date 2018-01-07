@@ -137,6 +137,7 @@ wp-content/wp-cache-config.php
 ## SVN Stuff
 
 .svn/
+.svnignore
 
 ## Eclipse stuff
 
