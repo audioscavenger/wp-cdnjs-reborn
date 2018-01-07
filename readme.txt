@@ -1,6 +1,6 @@
 === WP CDNjs Reborn ===
-Contributors: audioscavenger
-Tags: cdnjs
+Contributors: audioscavenger, mindshare, geetjacobs, patkirts
+Tags: CDNjs, cloudflare, js, css, scripts, cdn, libraries
 Requires at least: 3.8
 Tested up to: 4.9.1
 Stable tag: 0.2.2
@@ -49,7 +49,7 @@ With an easy drag&drop, manage the order in which your libraries will be loaded.
 Upload the plugin to your blog or install it via the dashboard, activate it, done.
 The configuration page is found under Settings->WP CDNjs Reborn
 
-This plugin requires JavaScript.
+This plugin requires PHP and JavaScript.
 
 
 == Frequently Asked Questions ==
@@ -61,7 +61,7 @@ Yes! Every WP CDNjs Reborn's features are and always will be free.
 
 Since WP CDNjs Reborn do not provided hosted services by WordPress.com, a WordPress.com account is not required.
 
-= How do I contribute to Jetpack? =
+= How do I contribute to WP CDNjs Reborn? =
 
 There are opportunities for developers at all levels to contribute.
 You can clone the [WP CDNjs Reborn Git](https://github.com/audioscavenger/wp-cdnjs-reborn) and pull requests from here.
@@ -69,18 +69,22 @@ You can clone the [WP CDNjs Reborn Git](https://github.com/audioscavenger/wp-cdn
 = How can I change what action is used to enqueue the CDNJS scripts? =
 
 You can override the default action ('init') that enqueues the CDNJS script like so:
-`add_filter('wp_cdnjs_init_action', 'my_cdnjs_init_action');
+`
+add_filter('wp_cdnjs_init_action', 'my_cdnjs_init_action');
 function my_cdnjs_init_action() {
 	return 'get_sidebar'; // the action tag you wish to use
-}`
+}
+`
 
 = Is it possible to have all enabled scripts load in the WordPress Admin area? =
 
 Yes. You can use this filter:
-`add_filter('wp_cdnjs_allow_in_admin', 'my_cdnjs_allow_in_admin');
+`
+add_filter('wp_cdnjs_allow_in_admin', 'my_cdnjs_allow_in_admin');
 function my_cdnjs_allow_in_admin() {
 	return TRUE;
-}`
+}
+`
 
 
 == Screenshots ==
