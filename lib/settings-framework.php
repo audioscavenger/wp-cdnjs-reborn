@@ -342,7 +342,7 @@ if(!class_exists('wp_cdnjs_settings')) {
 
 						<?php 
             // printf(__('To complete the uninstall <a href="%1$s">deactivate %2$s.</a>', 'wp-cdnjs-reborn'), esc_url($deactivate_url), WP_CDNJS_PLUGIN_NAME); 
-            printf('%1$s <a href="%1$s"">%3$s %4$s.</a>', _e('To complete the uninstall', 'wp-cdnjs-reborn'), esc_url($deactivate_url), _e('deactivate', 'wp-cdnjs-reborn'), WP_CDNJS_PLUGIN_NAME); 
+            printf('%1$s <a href="%1$s"">%3$s %4$s.</a>', __('To complete the uninstall', 'wp-cdnjs-reborn'), esc_url($deactivate_url), __('deactivate', 'wp-cdnjs-reborn'), WP_CDNJS_PLUGIN_NAME); 
             ?>
 					</p>
 				</div>

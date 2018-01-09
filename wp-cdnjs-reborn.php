@@ -9,7 +9,7 @@
  * License: GNU General Public License v3
  * License URI: license.txt
  * Text Domain: wp-cdnjs-reborn
- * Domain Path: /lang
+ * Domain Path: /languages
  */
 
 /**
@@ -200,7 +200,7 @@ if(!class_exists('WP_CDNJS')) : /**
 		 *
 		 */
 		public function load_textdomain() {
-			load_plugin_textdomain('wp-cdnjs-reborn', FALSE, WP_CDNJS_DIR_PATH.'/lang');
+			load_plugin_textdomain('wp-cdnjs-reborn', FALSE, WP_CDNJS_DIR_PATH.'/languages');
 		}
 
 		/**
