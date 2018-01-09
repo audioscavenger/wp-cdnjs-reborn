@@ -37,7 +37,7 @@ if(!class_exists('wp_cdnjs_settings')) {
 		/**
 		 * @var bool
 		 */
-		public $show_reset_button = FALSE;
+		public $show_reset_button = TRUE;
 
 		/**
 		 * @var bool
@@ -340,7 +340,10 @@ if(!class_exists('wp_cdnjs_settings')) {
 						}
 						?>
 
-						<?php printf(__('To complete the uninstall <a href="%1$s"">deactivate %2$s.</a>', 'wp-cdnjs-reborn'), esc_url($deactivate_url), WP_CDNJS_PLUGIN_NAME); ?>
+						<?php 
+            // printf(__('To complete the uninstall <a href="%1$s">deactivate %2$s.</a>', 'wp-cdnjs-reborn'), esc_url($deactivate_url), WP_CDNJS_PLUGIN_NAME); 
+            printf('%1$s <a href="%1$s"">%3$s %4$s.</a>', _e('To complete the uninstall', 'wp-cdnjs-reborn'), esc_url($deactivate_url), _e('deactivate', 'wp-cdnjs-reborn'), WP_CDNJS_PLUGIN_NAME); 
+            ?>
 					</p>
 				</div>
 				<?php
@@ -382,7 +385,7 @@ if(!class_exists('wp_cdnjs_settings')) {
 				<form method="post" action="">
 					<?php wp_nonce_field('wp-cdnjs-reset', 'wp-cdnjs-reset-nonce'); ?>
 					<label style="font-weight:normal;">
-						<?php printf(__('Do you wish to <strong>completely reset</strong> the default options for', 'wp-cdnjs-reborn')); ?> <?php echo WP_CDNJS_PLUGIN_NAME ?>? </label>
+						<?php printf(__('Do you wish to completely reset the default options for', 'wp-cdnjs-reborn')); ?> <?php echo WP_CDNJS_PLUGIN_NAME ?>? </label>
 					<input class="button-secondary" type="button" name="cancel" value="<?php _e('Cancel', 'wp-cdnjs-reborn'); ?>" onclick="document.getElementById('wp-cdnjs-reset').style.display='none';" style="margin-left:20px" />
 					<input class="button-primary" type="submit" name="wp_cdnjs_reset" value="Restore Defaults" />
 				</form>
@@ -391,7 +394,7 @@ if(!class_exists('wp_cdnjs_settings')) {
 				<form method="post" action="">
 					<?php wp_nonce_field('wp-cdnjs-uninstall', 'wp-cdnjs-uninstall-nonce'); ?>
 					<label style="font-weight:normal;">
-						<?php echo sprintf(__('Do you wish to <strong>completely uninstall</strong>', 'wp-cdnjs-reborn')); ?> <?php echo WP_CDNJS_PLUGIN_NAME ?>?</label>
+						<?php echo sprintf(__('Do you wish to completely uninstall', 'wp-cdnjs-reborn')); ?> <?php echo WP_CDNJS_PLUGIN_NAME ?>?</label>
 					<input class="button-secondary" type="button" name="cancel" value="<?php _e('Cancel', 'wp-cdnjs-reborn'); ?>" onclick="document.getElementById('wp-cdnjs-uninst').style.display = 'none';" style="margin-left:20px" />
 					<input class="button-primary" type="submit" name="wp_cdnjs_uninstall" value="Uninstall" />
 				</form>

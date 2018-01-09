@@ -1,5 +1,3 @@
-# WP CDNjs Reborn .gitignore template
-
 ### Composer template
 composer.phar
 vendor/

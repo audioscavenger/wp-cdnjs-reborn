@@ -14,7 +14,7 @@ function wp_cdnjs_settings($settings) {
     'fields'              => array(
       array(
         'id'          => 'enable_scripts',
-        'title'       => __('Enable', 'wp-cdnjs-reborn'),
+        'title'       => __('Enabled', 'wp-cdnjs-reborn'),
         'desc'        => __('Enqueue scripts in Locations defined', 'wp-cdnjs-reborn'),
         'placeholder' => '',
         'type'        => 'checkbox',

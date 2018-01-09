@@ -3,7 +3,7 @@ Contributors: audioscavenger, mindshare, geetjacobs, patkirts
 Tags: CDNjs, cloudflare, js, css, scripts, cdn, libraries
 Requires at least: 3.8
 Tested up to: 4.9.1
-Stable tag: 0.2.2
+Stable tag: 0.2.3
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl.html
 
@@ -97,13 +97,18 @@ function my_cdnjs_allow_in_admin() {
 
 == Changelog ==
 
+= 0.2.3 =
+
+**Enhancements**
+* Ajout de la version Francaise, vieux.
+
 = 0.2.2 =
 
 * Release date: January 7, 2018
 * Release post: [WP CDNjs Reborn](https://wp.me/p9sB0t-7Y)
 
 **Enhancements**
-* Creation of the readme.txt. This took me like 3 hours so it totallty justifies a new release.
+* Creation of the readme.txt. This took me like 3 hours so it totally justifies a new release.
 
 = 0.2.1 =
 
