@@ -14,6 +14,9 @@ Integrates easily CSS and JavaScript Libraries hosted by CDNjs.com. Browse, sele
 Speed up your site by using the powerfull and free CDNjs. This plugin Allows you to search all http://cdnjs.com libraries and include them on your site.
 Proudly served by [Audioscavenger](http://www.blog.derewonko.com/).
 
+**Requires PHP 5.3 or newer**
+![Tested in WordPress](https://img.shields.io/wordpress/v/akismet.svg) ![PHP 5.3+](https://img.shields.io/badge/PHP-5.3%2B-blue.svg) ![jQuery](https://img.shields.io/badge/jQuery-1.11.4-ff69b4.svg) ![Bootstrap](https://img.shields.io/badge/Bootstrap-3.3.x-6f5499.svg)
+
 = Browse by Name and Description =
 When browsing, the search key word look in the library names and description.
 

@@ -4,6 +4,12 @@ wp-cdnjs-reborn
 Integrates easily CSS and JavaScript Libraries hosted by CDNjs.com. Browse, select version and sub-assets to fit your needs.
 Proudly served by Audioscavenger (http://www.blog.derewonko.com/).
 
+Requirements
+------------
+![Tested in WordPress](https://img.shields.io/wordpress/v/akismet.svg) ![PHP 5.3+](https://img.shields.io/badge/PHP-5.3%2B-blue.svg) ![jQuery](https://img.shields.io/badge/jQuery-1.11.4-ff69b4.svg) ![Bootstrap](https://img.shields.io/badge/Bootstrap-3.3.x-6f5499.svg)
+
+The plugin is tested to work with ```Bootstrap 3```, ```jQuery 1.11.4``` and ```WordPress 4.9.1``` and **requires PHP 5.3 or later**.
+
 Meta
 ----
  * Plugin Name: WP cdnjs reborn
