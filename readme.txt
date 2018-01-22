@@ -2,8 +2,8 @@
 Contributors: audioscavenger, mindshare, geetjacobs, patkirts
 Tags: CDNjs, cloudflare, js, css, scripts, cdn, libraries
 Requires at least: 3.8
-Tested up to: 4.9.1
-Stable tag: 0.2.3
+Tested up to: 4.9.2
+Stable tag: 0.2.4
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl.html
 
@@ -99,6 +99,11 @@ function my_cdnjs_allow_in_admin() {
 
 
 == Changelog ==
+
+= 0.2.4 =
+
+**Bug Fix**
+* Correct path to language files + add en_US.mo
 
 = 0.2.3 =
 

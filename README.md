@@ -15,7 +15,7 @@ Meta
  * Plugin Name: WP cdnjs reborn
  * Plugin URI: http://wordpress.org/plugins/wp-cdnjs-reborn/
  * Description: Integrate easily CSS and JavaScript Library hosted by http://cdnjs.com on your WordPress site.
- * Version: 0.2.3
+ * Version: 0.2.4
  * Author: Audioscavenger
  * Author URI: https://github.com/audioscavenger/wp-cdnjs-reborn
  * License: GNU General Public License v3
@@ -30,7 +30,7 @@ History
 * Original name         : WP cdnjs
 * Topics                : php wordpress-plugin cdnjs js libraries 
 * Requires at least     : 3.8
-* Tested up to          : 4.9.1
+* Tested up to          : 4.9.2
 * License               : GPLv3
 * License URI           : http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -64,6 +64,9 @@ Screenshots
 
 Changelog
 ---------
+* 0.2.4
+  * Correct path to language files + add en_US.mo
+
 * 0.2.3
   * Ajout de la version Francaise, vieux.
 
