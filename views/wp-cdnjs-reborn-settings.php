@@ -71,7 +71,7 @@ function cdn_field() {
     if(!empty($settings['cdnjs_settings_scripts'])) : foreach($settings['cdnjs_settings_scripts'] as $key => $value) :
       $buff = '';
       $buff.= '<tr id="'. $key .'-row" class="index">';
-      $buff.= '  <td class="wp-cdnjs_move"><i class="fa fa-arrows-v"></i></td>';
+      $buff.= '  <td class="wp-cdnjs_move"><i class="sortable dashicons dashicons-move"></i></td>';
       $buff.= '  <td class="wp-cdnjs_name"><strong>'. $value['name'] .'</strong> <br /><span class="currentVersion">'. $value['version'] .'</span>';
       $buff.= '    <input type="hidden" name="cdnjs[cdnjs_settings_scripts]['. $key .'][name]" class="plugin_name" value="'. $value['name'] .'" />';
       $buff.= '    <input type="hidden" name="cdnjs[cdnjs_settings_scripts]['. $key .'][version]" class="plugin_version" value="'. $value['version'] .'" />';
@@ -84,13 +84,13 @@ function cdn_field() {
       $mainAssetId = sanitize_title($mainAsset);
       $buff.= '    <div id="'. $key .'-asset-holder" class="included_assets">';
       $buff.= '      <div id="'. $mainAssetId .'-asset-row"><strong>'. $mainAsset.'</strong>';
-      $buff.= '        <i title="Remove" style="cursor:pointer" class="fa fa-times" onclick="removeRow(\'#'. $mainAssetId .'-asset-row\');"></i>'; //@todo: verify $value['assets']>0
+      $buff.= '        <i title="Remove" style="cursor:pointer" class="dashicons dashicons-no-alt" onclick="removeRow(\'#'. $mainAssetId .'-asset-row\');"></i>'; //@todo: verify $value['assets']>0
       $buff.= '        <input type="hidden" name="cdnjs[cdnjs_settings_scripts]['. $key .'][assets][]" value="'. $mainAsset .'">';
       $buff.= '      </div>';
       foreach($value['assets'] as $asset) :
         $assetId = sanitize_title($asset);
       $buff.= '      <div id="'. $assetId .'-asset-row">'. $asset;
-      $buff.= '        <i title="Remove" style="cursor:pointer" class="fa fa-times" onclick="removeRow(\'#'. $assetId .'-asset-row\');"></i>';
+      $buff.= '        <i title="Remove" style="cursor:pointer" class="dashicons dashicons-no-alt" onclick="removeRow(\'#'. $assetId .'-asset-row\');"></i>';
       $buff.= '        <input type="hidden" name="cdnjs[cdnjs_settings_scripts]['. $key .'][assets][]" value="'. $asset .'">';
       $buff.= '      </div>';
       endforeach; 

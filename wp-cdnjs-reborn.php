@@ -3,7 +3,7 @@
  * Plugin Name: WP cdnjs reborn
  * Plugin URI: http://wordpress.org/plugins/wp-cdnjs-reborn/
  * Description: Integrates easily CSS and JavaScript Libraries hosted by CDNjs.com. Browse, select version and sub-assets to fit your needs.
- * Version: 0.2.4
+ * Version: 0.3.0
  * Author: Audioscavenger
  * Author URI: http://www.derewonko.com
  * License: GNU General Public License v3
@@ -545,12 +545,12 @@ if(!class_exists('WP_CDNJS')) : /**
 		 */
 		public function register_admin_scripts() {
 			// @todo make function for enqueueing CDNJS stuff and use that here instead
-			wp_enqueue_script('cdnjs-select2', $this->cdnjs_uri.'select2/'.$this->select2_version.'/select2.min.js', array('jquery'));
+			wp_enqueue_script('cdnjs-select2', $this->cdnjs_uri.'select2/'.$this->select2_version.'/select2.min.js', array('jquery'), null);
 			wp_enqueue_script('jquery-ui-sortable');
-			//wp_enqueue_script('jquery-ui-core');
+			//wp_enqueue_script('jquery-ui-core');  // what for?
 
-			// wp_register_script('wp-cdnjs-reborn', WP_CDNJS_DIR_URL.'/assets/js/wp-cdnjs-reborn.js'); // for debugging
-      wp_register_script('wp-cdnjs-reborn', WP_CDNJS_DIR_URL.'/assets/js/wp-cdnjs-reborn.min.js');
+			wp_register_script('wp-cdnjs-reborn', WP_CDNJS_DIR_URL.'/assets/js/wp-cdnjs-reborn.js', array('jquery'), filemtime(WP_CDNJS_DIR_PATH.'/assets/js/wp-cdnjs-reborn.js'));
+
 			$translation_array = array(
 				'add_assets'         => __('Add Assets', 'wp-cdnjs-reborn'),
 				'choose_version'     => __('Choose Version', 'wp-cdnjs-reborn'),
@@ -574,10 +574,10 @@ if(!class_exists('WP_CDNJS')) : /**
 		 */
 		public function register_admin_styles() {
 			// @todo make function for enqueueing CDNJS stuff and use that here instead
-			wp_enqueue_style('cdnjs-select2', $this->cdnjs_uri . 'select2/' . $this->select2_version . '/select2.min.css');
-			wp_enqueue_style('cdnjs-select2-bootstrap', $this->cdnjs_uri . 'select2/' . $this->select2_version . '/select2-bootstrap.min.css');
-			wp_enqueue_style('cdnjs-font-awesome', $this->cdnjs_uri . 'font-awesome/' . $this->fa_version . '/css/font-awesome.min.css');
-			wp_enqueue_style('cdnjs-styles', WP_CDNJS_DIR_URL . '/assets/css/cdnjs-styles.css');
+			wp_enqueue_style('cdnjs-select2', $this->cdnjs_uri . 'select2/' . $this->select2_version . '/select2.min.css', array(), null);
+			wp_enqueue_style('cdnjs-select2-bootstrap', $this->cdnjs_uri . 'select2/' . $this->select2_version . '/select2-bootstrap.min.css', array(), null);
+			// wp_enqueue_style('cdnjs-font-awesome', $this->cdnjs_uri . 'font-awesome/' . $this->fa_version . '/css/font-awesome.min.css', array(), null); // fa for just 2 icons??
+			wp_enqueue_style('cdnjs-styles', WP_CDNJS_DIR_URL . '/assets/css/cdnjs-styles.css', array(), filemtime(WP_CDNJS_DIR_PATH . '/assets/css/cdnjs-styles.css'));
 		}
 
 		/**
@@ -607,10 +607,12 @@ if(!class_exists('WP_CDNJS')) : /**
 								$asset_name = sanitize_title($asset);
 								switch($this->get_file_extension($asset)) {
 									case 'js':
-										wp_enqueue_script($asset_name.'-wp-cdnjs', $this->cdnjs_uri.$plugin['name'].'/'.$plugin['version'].'/'.$asset, array(), $plugin['version'], (bool) $plugin['location']);
+										// wp_enqueue_script($asset_name.'-wp-cdnjs', $this->cdnjs_uri.$plugin['name'].'/'.$plugin['version'].'/'.$asset, array(), $plugin['version'], (bool) $plugin['location']); // 0.3.0 GET RID OF QUERY STRINGS, FUCK!
+										wp_enqueue_script($asset_name.'-wp-cdnjs', $this->cdnjs_uri.$plugin['name'].'/'.$plugin['version'].'/'.$asset, array(), null, (bool) $plugin['location']);
 										break;
 									case 'css':
-										wp_enqueue_style($asset_name.'-wp-cdnjs', $this->cdnjs_uri.$plugin['name'].'/'.$plugin['version'].'/'.$asset, array(), $plugin['version']);
+										// wp_enqueue_style($asset_name.'-wp-cdnjs', $this->cdnjs_uri.$plugin['name'].'/'.$plugin['version'].'/'.$asset, array(), $plugin['version']); // 0.3.0 GET RID OF QUERY STRINGS
+										wp_enqueue_style($asset_name.'-wp-cdnjs', $this->cdnjs_uri.$plugin['name'].'/'.$plugin['version'].'/'.$asset, array(), null);
 										break;
 								}
 							}

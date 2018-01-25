@@ -10,7 +10,7 @@ body.dragging, body.dragging * {
   z-index: 2000;
 }
 
-table#cdnjs-selected  .fa-arrows-v{
+table#cdnjs-selected  .dashicons-move {
 cursor:move;
 text-align: center;
 padding: 10px;

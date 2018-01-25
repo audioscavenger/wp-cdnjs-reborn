@@ -6,16 +6,16 @@ Proudly served by Audioscavenger (http://www.blog.derewonko.com/).
 
 Requirements
 ------------
-![Tested in WordPress](https://img.shields.io/wordpress/v/akismet.svg) ![PHP 5.3+](https://img.shields.io/badge/PHP-5.3%2B-blue.svg) ![jQuery](https://img.shields.io/badge/jQuery-1.11.4-ff69b4.svg) ![Bootstrap](https://img.shields.io/badge/Bootstrap-3.3.x-6f5499.svg)
+![WordPress 4.9.1 tested](https://img.shields.io/wordpress/v/akismet.svg) ![PHP 5.3+](https://img.shields.io/badge/PHP-5.3%2B-blue.svg) ![jQuery 3.1.1](https://img.shields.io/badge/jQuery-3.1.1-ff69b4.svg) ![Bootstrap 3.x](https://img.shields.io/badge/Bootstrap-3.3.x-6f5499.svg)
 
-The plugin is tested to work with ```Bootstrap 3```, ```jQuery 1.11.4``` and ```WordPress 4.9.1``` and **requires PHP 5.3 or later**.
+The plugin is tested to work with ```Bootstrap 3.x```, ```jQuery 3.1.1``` and ```WordPress 4.9.2``` and **requires PHP 5.3 or later**.
 
 Meta
 ----
  * Plugin Name: WP cdnjs reborn
  * Plugin URI: http://wordpress.org/plugins/wp-cdnjs-reborn/
  * Description: Integrate easily CSS and JavaScript Library hosted by http://cdnjs.com on your WordPress site.
- * Version: 0.2.4
+ * Version: 0.3.0
  * Author: Audioscavenger
  * Author URI: https://github.com/audioscavenger/wp-cdnjs-reborn
  * License: GNU General Public License v3
@@ -64,6 +64,10 @@ Screenshots
 
 Changelog
 ---------
+* 0.3.0
+  * Performance increase: Removed the query strings everywhere
+  * Removed font-awsome and switched to WP dashicons
+
 * 0.2.4
   * Correct path to language files + add en_US.mo
 
@@ -107,7 +111,7 @@ Changelog
 Copyright
 ---------
  * 
- * Modified work Copyright 2017 Eric Derewonko (http://www.derewonko.com)
+ * Modified work Copyright 2018 Eric Derewonko (http://www.derewonko.com)
  * Original work Copyright 2014 Mindshare Studios, Inc. (http://mind.sh/are/)
  * Plugin template was forked from the WP Settings Framework by Gilbert Pellegrom http://dev7studios.com
  * and the WordPress Plugin Boilerplate by Christopher Lamm http://www.theantichris.com

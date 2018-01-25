@@ -88,7 +88,7 @@ jQuery(document).ready(function(jQuery) {
 
   cdnjsSelected.find('tbody').sortable({
     cursor: "move",
-    handle: "i.fa-arrows-v",
+    handle: "i.sortable",
     stop:   function(event, ui) {
       cdnjsSelected.find('tr').removeClass('alternate');
       cdnjsSelected.find('tr:odd').addClass('alternate');
@@ -350,7 +350,7 @@ function addLibraryRow(data, location) {
   }
 
   var row = '<tr id="' + nameID + '-row" class="index">';
-  row += '<td class="wp-cdnjs_move"><i class="fa fa-arrows-v"></i></td>';
+  row += '<td class="wp-cdnjs_move"><i class="sortable dashicons dashicons-move"></i></td>';
   row += '<td class="wp-cdnjs_name"><strong>' + data.name + '</strong> <br/>' + cdnjs_text.version + ': <span class="currentVersion">' + data.version +'</span>';
   row += '<input type="hidden" name="cdnjs[cdnjs_settings_scripts][' + nameID + '][name]" class="plugin_name" value="' + data.name + '"/>';
   row += '<input type="hidden" name="cdnjs[cdnjs_settings_scripts][' + nameID + '][version]" class="plugin_version" value="' + data.version + '"/>';
@@ -359,7 +359,7 @@ function addLibraryRow(data, location) {
   row += '<td class="wp-cdnjs_assets">';
   row += '<div id="' + nameID + '-asset-holder" class="included_assets">';
   row += '<div id="' + cleanName(default_asset) + '-asset-row"><strong>'+default_asset+'</strong>';
-  row += ' <i title="' + cdnjs_text.remove + '" style="cursor:pointer" class="fa fa-times" onclick="removeRow(\'#' + cleanName(default_asset) + '-asset-row\');"></i><br />';
+  row += ' <i title="' + cdnjs_text.remove + '" style="cursor:pointer" class="dashicons dashicons-no-alt" onclick="removeRow(\'#' + cleanName(default_asset) + '-asset-row\');"></i><br />';
   row += '<input type="hidden" name="cdnjs[cdnjs_settings_scripts][' + nameID + '][assets][]" value="' + default_asset + '">';
   row += '</div>';
   row += '</div>';
@@ -383,7 +383,7 @@ function addAssetRow(data, location) {
   var assetId = cleanName(data.text);
   var row = '<div id="' + assetId + '-asset-row">';
   row += data.text;
-  row += ' <i title="' + cdnjs_text.remove + '" style="cursor:pointer" class="fa fa-times" onclick="removeRow(\'#' + assetId + '-asset-row\');"></i><br />';
+  row += ' <i title="' + cdnjs_text.remove + '" style="cursor:pointer" class="dashicons dashicons-no-alt" onclick="removeRow(\'#' + assetId + '-asset-row\');"></i><br />';
   row += '<input type="hidden" name="cdnjs[cdnjs_settings_scripts][' + parentId + '][assets][]" value="' + data.text + '"/>';
   row += '</div>';
   if (debug()) console.log('addAssetRow-parentId: '+'#' + parentId + '-row div.included_assets');  //#jquery-row div.included_assets
