@@ -3,7 +3,7 @@
  * Plugin Name: WP cdnjs reborn
  * Plugin URI: http://wordpress.org/plugins/wp-cdnjs-reborn/
  * Description: Integrates easily CSS and JavaScript Libraries hosted by CDNjs.com. Browse, select version and sub-assets to fit your needs.
- * Version: 0.3.0
+ * Version: 0.3.2
  * Author: Audioscavenger
  * Author URI: http://www.derewonko.com
  * License: GNU General Public License v3
@@ -13,7 +13,10 @@
  */
 
 /**
- * Copyright 2017 Eric Derewonko (http://www.derewonko.com)
+ * Copyright 2018 Eric Derewonko (http://www.derewonko.com)
+ * Plugin template was forked from the WP Settings Framework by Gilbert Pellegrom http://dev7studios.com
+ * and the WordPress Plugin Boilerplate by Christopher Lamm http://www.theantichris.com
+ *
  * Plugin template was forked from the WP cdnjs by Mindshare Studios, Inc. (http://mind.sh/are/)
  * Plugin template was forked from the WP Settings Framework by Gilbert Pellegrom http://dev7studios.com
  * and the WordPress Plugin Boilerplate by Christopher Lamm http://www.theantichris.com
@@ -41,11 +44,11 @@ if(!function_exists('add_action')) {
 }
 
 if(!defined('WP_CDNJS_VERSION')) {
-	define('WP_CDNJS_VERSION', '0.2.1');
+	define('WP_CDNJS_VERSION', '0.3.2');
 }
 
 if(!defined('WP_CDNJS_MIN_WP_VERSION')) {
-	define('WP_CDNJS_MIN_WP_VERSION', '3.9');
+	define('WP_CDNJS_MIN_WP_VERSION', '5.0');
 }
 
 if(!defined('WP_CDNJS_PLUGIN_NAME')) {
@@ -607,7 +610,7 @@ if(!class_exists('WP_CDNJS')) : /**
 								$asset_name = sanitize_title($asset);
 								switch($this->get_file_extension($asset)) {
 									case 'js':
-										// wp_enqueue_script($asset_name.'-wp-cdnjs', $this->cdnjs_uri.$plugin['name'].'/'.$plugin['version'].'/'.$asset, array(), $plugin['version'], (bool) $plugin['location']); // 0.3.0 GET RID OF QUERY STRINGS, FUCK!
+										// wp_enqueue_script($asset_name.'-wp-cdnjs', $this->cdnjs_uri.$plugin['name'].'/'.$plugin['version'].'/'.$asset, array(), $plugin['version'], (bool) $plugin['location']); // 0.3.0 GET RID OF QUERY STRINGS, PLEASE!
 										wp_enqueue_script($asset_name.'-wp-cdnjs', $this->cdnjs_uri.$plugin['name'].'/'.$plugin['version'].'/'.$asset, array(), null, (bool) $plugin['location']);
 										break;
 									case 'css':

@@ -1,9 +1,9 @@
 === WP CDNjs Reborn ===
 Contributors: audioscavenger, mindshare, geetjacobs, patkirts
 Tags: CDNjs, cloudflare, js, css, scripts, cdn, libraries
-Requires at least: 3.8
-Tested up to: 4.9.2
-Stable tag: 0.3.0
+Requires at least: 5.0
+Tested up to: 5.1.1
+Stable tag: 0.3.2
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl.html
 
@@ -13,6 +13,9 @@ Integrates easily CSS and JavaScript Libraries hosted by CDNjs.com. Browse, sele
 
 Speed up your site by using the powerfull and free CDNjs. This plugin Allows you to search all http://cdnjs.com libraries and include them on your site.
 Proudly served by [Audioscavenger](http://www.blog.derewonko.com/).
+
+/!\ This is a fork from WP cdnjs by Mindshare Labs, which have merged since 0.3.0. I keep both projects up to date and they are now exactly the same. Maybe this one will disappear one day since both are the same and 100% compatibles.
+
 
 **Requires PHP 5.3 or newer**
 ![Tested in WordPress](https://img.shields.io/wordpress/v/akismet.svg) ![PHP 5.3+](https://img.shields.io/badge/PHP-5.3%2B-blue.svg) ![jQuery](https://img.shields.io/badge/jQuery-1.11.4-ff69b4.svg) ![Bootstrap](https://img.shields.io/badge/Bootstrap-3.3.x-6f5499.svg)
@@ -99,6 +102,18 @@ function my_cdnjs_allow_in_admin() {
 
 
 == Changelog ==
+
+= 0.3.2 =
+
+**Minor Update**
+* just tested for 5.1.1
+* Minimum version required at least 5.0 to force you guys update core engine. Security matters.
+
+= 0.3.1 =
+
+**Minor Update**
+* just tested for 4.9.6 + updated EOL of main script
+* Minimum version required at least 4.9 to force you guys update core engine. Security matters.
 
 = 0.3.0 =
 

@@ -6,16 +6,16 @@ Proudly served by Audioscavenger (http://www.blog.derewonko.com/).
 
 Requirements
 ------------
-![WordPress 4.9.1 tested](https://img.shields.io/wordpress/v/akismet.svg) ![PHP 5.3+](https://img.shields.io/badge/PHP-5.3%2B-blue.svg) ![jQuery 3.1.1](https://img.shields.io/badge/jQuery-3.1.1-ff69b4.svg) ![Bootstrap 3.x](https://img.shields.io/badge/Bootstrap-3.3.x-6f5499.svg)
+![WordPress 5.1.1 tested](https://img.shields.io/wordpress/v/akismet.svg) ![PHP 5.3+](https://img.shields.io/badge/PHP-5.3%2B-blue.svg) ![jQuery 3.1.1](https://img.shields.io/badge/jQuery-3.1.1-ff69b4.svg) ![Bootstrap 3.x](https://img.shields.io/badge/Bootstrap-3.3.x-6f5499.svg)
 
-The plugin is tested to work with ```Bootstrap 3.x```, ```jQuery 3.1.1``` and ```WordPress 4.9.2``` and **requires PHP 5.3 or later**.
+The plugin is tested to work with ```Bootstrap 3.x```, ```jQuery 3.1.1``` and ```WordPress 5.1.1``` and **requires PHP 5.3 or later**.
 
 Meta
 ----
  * Plugin Name: WP cdnjs reborn
  * Plugin URI: http://wordpress.org/plugins/wp-cdnjs-reborn/
  * Description: Integrate easily CSS and JavaScript Library hosted by http://cdnjs.com on your WordPress site.
- * Version: 0.3.0
+ * Version: 0.3.2
  * Author: Audioscavenger
  * Author URI: https://github.com/audioscavenger/wp-cdnjs-reborn
  * License: GNU General Public License v3
@@ -29,8 +29,8 @@ History
 * Original Contributors : mindshare, geetjacobs, patkirts
 * Original name         : WP cdnjs
 * Topics                : php wordpress-plugin cdnjs js libraries 
-* Requires at least     : 3.8
-* Tested up to          : 4.9.2
+* Requires at least     : 5.0
+* Tested up to          : 5.1.1
 * License               : GPLv3
 * License URI           : http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -64,6 +64,10 @@ Screenshots
 
 Changelog
 ---------
+* 0.3.2
+  * just tested for 5.1.1
+  * updated minimum WP version to 5.0 to force you guys to update core engine, I hope you don't mind
+
 * 0.3.0
   * Performance increase: Removed the query strings everywhere
   * Removed font-awsome and switched to WP dashicons
